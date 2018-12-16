@@ -1,3 +1,9 @@
+# BreazeHome Capstone Project (RickRoda)
+SECRET_KEY has been removed. This project WILL NOT COMPILE.
+This is purely on GitHub to showcase my programming skills to potential employers.
+Send me a message if you would like to discuss anything further.
+
+
 # Breazehome-desktop
 Desktop companion webapp to the [Ionic Brezehome](https://git.breazehome.com/Breaze/SharGroup-Ionic) application. This version does not use the Ionic framework.
 
