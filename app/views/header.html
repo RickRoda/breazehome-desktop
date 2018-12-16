@@ -1,0 +1,221 @@
+<div>
+  <nav main-color class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        
+        <!-- Breazehome Brand -->
+        <div class="navbar-header">
+          <a class="navbar-title" href="#"> 
+            <img class="navbar-logo" src="images/logo.png" alt="Breazehome Logo"> 
+              <i class="glyphicon glyphicon-menu-right"></i> <span class="navbar-current" ng-bind="currentPage"></span>
+          </a>
+        </div>
+
+        <!-- Nav links -->
+        <div class="navbar-header float-right">
+          <ul class="nav navbar-nav">
+              <li class="landing-header-menu-item" ng-click="switchLanguage()">{{storage.language.content.landingPage.language}}</li>
+          </ul>
+          <ul class="nav navbar-nav navbar-tools">
+            <!-- Search dropdown Button -->
+            <li>
+              <div class="dropdown">
+                <i class="glyphicon glyphicon-search" data-toggle="dropdown"></i><!-- <span class="caret"></span> -->
+                <ul class="dropdown-menu navbar-tools-dropdown">
+                  <div class="animated fadeInUp">
+                    <li ng-click class="saved-new">
+                      <a href="#/results" style="color: white;">Start new search</a>
+                    </li>
+                    <span class="saved-title">Saved Searches</span>
+                    <!-- <span class="saved-subtitle">Start new search <i class="glyphicon glyphicon-menu-right"></i></span> -->
+
+<!--                         <li ng-repeat="savedSearch in savedSearches" ng-click="applyFilter(savedSearch)">
+                      {{savedSearch.title}}
+                      <div class="saved-new-wrapper">
+                        <span class="saved-new-count">99+</span><span class="saved-new">New</span>
+                      </div>
+                    </li> -->
+                    <li ng-repeat="savedSearch in savedSearches" ng-click="applyFilter(savedSearch)">
+                      <div class="row">
+                        <div class="history-dropdown-search-left history-dropdown-pane col-md-2">
+                          <div class="history-dropdown-pane-inner">
+                            <div>
+                              <i class="history-dropdown-search-magnifier glyphicon glyphicon-search"></i>
+                              <span class="history-dropdown-search-result"><b>6</b></span>
+                            </div>
+                            <div>results</div>
+                          </div>
+                        </div>
+                        <div class="history-dropdown-search-right history-dropdown-pane col-md-10">
+                          <div class="history-dropdown-pane-inner">
+                            <b><p class="history-dropdown-search-description">$120k - $300k 2+ Bd</p></b>
+                            <p class="history-dropdown-search-description">Condo in Brickell, Coral Gables, Coconut Grove, Kendall, South...</p>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li ng-click class="saved-pages">
+                      <span class="saved-arrow"><i class="glyphicon glyphicon-step-backward"></i></span>
+                      <span class="saved-page">1</span>
+                      <span class="saved-page">2</span>
+                      <span class="saved-page">3</span>
+                      <span class="saved-arrow"><i class="glyphicon glyphicon-step-forward"></i></span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+            </li>
+
+            <!-- History dropdown Button -->
+            <li>
+              <div class="dropdown">
+                <i class="glyphicon glyphicon-time" data-toggle="dropdown"></i><!-- <span class="caret"> --></span>
+                <ul class="dropdown-menu history-dropdown">
+                  <div class="animated fadeInUp">
+                    <!-- Recently searches title -->
+                    <span class="saved-title">Recently searches</span>
+                    <span class="history-subtitle">Load {{history.searchesHistroy.length}} more <i class="glyphicon glyphicon-menu-right"></i></span>
+
+                    <!-- <li ng-repeat="savedSearch in savedSearches" ng-click="applyFilter(savedSearch)">
+                      {{savedSearch.title}}
+                      <div class="saved-new-wrapper">
+                        <span class="saved-new-count">99+</span><span class="saved-new">New</span>
+                      </div>
+                    </li> -->
+                    <li ng-repeat="searchHistroy in history.searchesHistroy">
+                      <a ng-href="#/results/{{searchHistroy}}">
+                        <div class="row">
+                          <div class="history-dropdown-search-left history-dropdown-pane col-md-2">
+                            <div class="history-dropdown-pane-inner">
+                              <div>
+                                <i class="history-dropdown-search-magnifier glyphicon glyphicon-search"></i>
+                                <span class="history-dropdown-search-result"><b>24</b></span>
+                              </div>
+                              <div>results</div>
+                            </div>
+                          </div>
+                          <div class="history-dropdown-search-right history-dropdown-pane col-md-10">
+                            <div class="history-dropdown-pane-inner">
+                              <b><p class="history-dropdown-search-description">$120k - $300k 2+ Bd</p></b>
+                              <p class="history-dropdown-search-description">Condo in Brickell, Coral Gables, Coconut Grove, Kendall, South...</p>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="history-dropdown-search-left history-dropdown-pane col-md-2">
+                          <div class="history-dropdown-pane-inner">
+                            <div>
+                              <i class="history-dropdown-search-magnifier glyphicon glyphicon-search"></i>
+                              <span class="history-dropdown-search-result"><b>6</b></span>
+                            </div>
+                            <div>results</div>
+                          </div>
+                        </div>
+                        <div class="history-dropdown-search-right history-dropdown-pane col-md-10">
+                          <div class="history-dropdown-pane-inner">
+                            <b><p class="history-dropdown-search-description">$120k - $300k 2+ Bd</p></b>
+                            <p class="history-dropdown-search-description">Condo in Brickell, Coral Gables, Coconut Grove, Kendall, South...</p>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="history-dropdown-search-left history-dropdown-pane col-md-2">
+                          <div class="history-dropdown-pane-inner">
+                            <div>
+                              <i class="history-dropdown-search-magnifier glyphicon glyphicon-search"></i>
+                              <span class="history-dropdown-search-result"><b>12</b></span>
+                            </div>
+                            <div>results</div>
+                          </div>
+                        </div>
+                        <div class="history-dropdown-search-right history-dropdown-pane col-md-10">
+                          <div class="history-dropdown-pane-inner">
+                            <b><p class="history-dropdown-search-description">$120k - $300k 2+ Bd</p></b>
+                            <p class="history-dropdown-search-description">Condo in Brickell, Coral Gables, Coconut Grove, Kendall, South...</p>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <!-- Recently viewed properties title -->
+                    <span class="saved-title">Recently viewed properties</span>
+                    <span class="history-subtitle">Load {{history.propertiesHistroy.length}} more <i class="glyphicon glyphicon-menu-right"></i></span>
+                    <li ng-repeat="propertyHistroy in history.propertiesHistroy">
+                    <a ng-href="#/results/{{propertyHistroy}}">
+                      <div class="row">
+                        <div class="history-dropdown-property-image col-md-3" style="background-image: url(../images/temp_home_placeholder/home{{$index%14+1}}.jpeg)"></div>
+                        <div class="history-dropdown-property-right history-dropdown-pane col-md-9">
+                          <div class="history-dropdown-pane-inner">
+                            <b><p class="history-dropdown-search-description">$120k - $300k 2+ Bd</p></b>
+                            <p class="history-dropdown-search-description">Condo in Brickell, Coral Gables, Coconut Grove, Kendall, South...</p>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+            </li>
+            
+            <!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+		    <!-- View Boards Button -->
+		    <li>
+		    	<a ng-click="clickBoard()"><i class="glyphicon glyphicon-th-large"></i></a>
+		    </li>
+		     <!-- Favorite Button -->
+		    <li>
+		    	<a ng-click="resultsFav()"><i class="glyphicon glyphicon-star"></i></a>
+		    </li>
+		    <!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+		    
+            <!-- User Button -->
+            <li>
+              <div class="dropdown">
+                <i class="glyphicon glyphicon-user" data-toggle="dropdown"></i><!-- <span class="caret"></span> -->
+                <ul class="dropdown-menu navbar-tools-dropdown user">
+                  <div class="animated fadeInUp">
+
+                    <!-- If User is logged in -->
+                    <div ng-if="user">
+                      <!-- #2427 Ronny Alfonso ralfo040@fiu.edu -->
+                      <a ng-href="#/profile"><span class="saved-title">My Account</span></a>
+                      <!--END #2427-->
+                      <span class="saved-subtitle" ng-hide=!user.isSuperuser > 
+                        <a class="manage-button" ng-href="#/admin"> Manage </a>
+                        <i class="glyphicon glyphicon-menu-right"></i>
+                      </span>
+                      <div class="navbar-tools-user-wrapper">
+                        <span class="navbar-tools-user-name">John Smith</span>
+                        <span class="navbar-tools-user-email">{{user.email}}</span>
+                        <li ng-click="logout()">Log Out</li>
+                      </div>
+                    </div>
+
+                    <!-- If User is not logged in -->
+                    <div ng-if="!user">
+                      <span class="saved-title navbar-tools-signin">Sign into Breazehome</span>
+                      <a href="#/landing" title="Create an account" class="navbar-tools-signin-help">Don't have an account? <i class="glyphicon glyphicon-menu-right"></i></a>
+                      
+                      <form name="loginForm" class="navbar-tools-user-form">
+                        <input type="text" placeholder="email" ng-model="loginParams.username">
+                        <input type="password" placeholder="password" ng-model="loginParams.password">
+                        <li ng-click="login()">Sign In</li>
+                      </form> 
+                    </div>
+
+                  </div>
+                </ul>
+              </div>
+            </li>
+          </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>

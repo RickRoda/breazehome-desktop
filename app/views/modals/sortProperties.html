@@ -1,0 +1,36 @@
+<div id="sort-custom-modal"   >
+  <!-- START sortPropertiesbyAttributes:lcaba026@fiu.edu -->
+  <div id="overlay">
+    <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <button type="button" class="close fa fa-check" ng-click="applySort()" data-dismiss="modal" aria-hidden="true"></button>
+    <h5 class="sort-slogann">Sort properties by.....</h5>
+    <div class="row">
+      <ul ui-sortable="sortableOptions" ng-model="sortItems" id="list" class="task">
+
+        <li ng-repeat="item in sortItems" ng-hide="!item.active" data-group = li-1 ng-click="clickAttribute($index);$event.stopPropagation()" ng-class="item.selected?'test-seleted':'test-unseleted'">
+          <div class="icons">
+            <i id="check" ng-class="item.selected?'test-seleted':'test-unseleted'" class="fa fa-check"  aria-hidden="true" ></i>
+            {{item.name}}
+            <a id="high" ng-click="reversePriority($index);$event.stopPropagation()" ng-class="item.selected?'test-seleted':'test-unseleted'" >
+              <i id="refresh" ng-class="item.selected?'test-seleted':'test-unseleted'" class="glyphicon glyphicon-refresh" ></i>
+              <span id="hl" ng-class="item.selected?'test-seleted':'test-unseleted'" ng-hide="item.asc">High to low</span>
+              <span id="lh" ng-class="item.selected?'test-seleted':'test-unseleted'" ng-hide="!item.asc">Low to high</span>
+            </a>
+            <span ng-click="clickArrow($index);$event.stopPropagation()" ng-class="item.selected?'test-seleted':'test-unseleted'"  class="glyphicon glyphicon-arrow-up"></span>
+          </div>
+        </li>
+        <li id="customize" ng-click="showCustomizeSort()" ng-class='test-unseleted' data-dismiss="modal">
+          <div class="icons" ng-class="test-unseleted">
+            <div class="customize-text" style="margin-left: 30px">
+              <span class="plusIcon">+</span>
+              <span class="customName">Customize sort </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="fade"></div>
+</div>
+
+<!-- END sortPropertiesbyAttributes -->

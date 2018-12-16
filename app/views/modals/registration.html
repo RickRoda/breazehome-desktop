@@ -1,0 +1,61 @@
+<div class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Register a Breazehome Account</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- Registration Form -->
+        <form name="registrationForm" novalidate="">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="registrationParams.email"
+              required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group has-feedback">
+            <label for="password">Enter Password</label>
+                <input  ng-mouseover="onMouseOver($event)" 
+                        ng-mouseleave="onMouseLeave($event)" 
+                        ng-attr-type="{{ showPassword ? 'text' : 'password' }}" 
+                        class="form-control" 
+                        id="password" 
+                        placeholder="Password" 
+                        ng-model="registrationParams.password" required>
+                <span class="form-control-feedback" 
+                      ng-class="{'icon-eye-none' : !showPassword, 'icon-eye' : showPassword}"
+                      style="color: #006990; font-size: 20px; margin-top: 10px"></span>
+            <small class="form-text text-muted">Hover over the input box to show the password. Passwords must be 6 - 12 characters and must contain at least one symbol ($, %, @, #, *, &amp;).</small>
+          </div>
+
+
+          <div class="form-group">
+            <label for="questions">Select your security question</label>
+            <div class="dropdown landing-search-dropdown">
+              <select id="questions" ng-model="selected" ng-options="question as question.question for question in questions track by question.id">
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="answer">Enter your answer</label>
+            <input type="text" class="form-control" id="answer" placeholder="Answer the question you selected above" ng-model="registrationParams.answer"
+              required>
+            <small class="form-text text-muted">This answer is not case-sensitive.</small>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" 
+                ng-click="registerUser()" 
+                ng-disabled="registrationForm.email.$invalid && registrationForm.password.$invalid" 
+                class="btn btn-primary" 
+                data-dismiss="modal">Sign Up</button>
+        <button type="button" data-dismiss="modal" ng-click="close()" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="modal fade nopadding detail-gallery-popup">
+  <!-- <div class="modal-dialog"> -->
+    <div class="detail-gallery-popup-content">
+      <div class="detail-gallery-popup-header">
+        <div class="detail-gallery-popup-header-counter">Photo {{currentImage}} of {{imagesNum}}</div>
+        <div class="detail-gallery-popup-header-right">
+          <div class="detail-gallery-popup-header-switch-container">
+            <div class="detail-gallery-popup-header-switch">
+              <span style="position: absolute; left: -60px; top: -5px;" ng-class="{'landing-toggle-true': switcher, 'landing-toggle-false': !switcher}">Photos</span>
+              <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-click="switchMap()">
+              <label for="cmn-toggle-1"></label>
+              <span style="position: absolute; right: -50px; top: -5px;" ng-class="{'landing-toggle-true': !switcher, 'landing-toggle-false': switcher}">Map</span>
+            </div>
+          </div>
+          <div class="detail-gallery-popup-header-close">
+            <i class="glyphicon glyphicon-remove"  ng-click="closeModal();" data-dismiss="modal" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="detail-gallery-popup-body">
+        <div class="detail-gallery-popup-image">
+          <div id="popup-mainImage" class="detail-gallery-popup-main" ng-hide="showMap">
+          </div>
+          <div id="map-popup" class="detail-gallery-popup-main" ng-show="showMap"></div>
+          <div class="detail-gallery-popup-caption">Caption</div>
+          <!-- <hr/> -->
+        </div>
+        <!-- <div id="photos" class="detail-gallery">
+          
+          <div class="detail-image">
+            <div id="galleryImage" class="detail-image-content">
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="detail-gallery-popup-footer">
+        <div class="detail-gallery-popup-unselected">
+            <div class="detail-gallery-popup-unselected-item" ng-repeat="image in images" style="background-image: url(https://api.breazehome.com{{image.path}});" ng-click="changeGalleryImage(image)"></div>
+          </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>

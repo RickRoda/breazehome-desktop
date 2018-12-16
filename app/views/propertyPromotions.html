@@ -1,0 +1,37 @@
+<!--START Manage promotion filters fernando serrano:fserr010@fiu.edu-->
+<breaze-header></breaze-header>
+
+<div class="propertyPromotions">
+
+  <div class="propertyPromotions-main-grid">
+    <div class="grid-rows header">
+      <h1>Priority</h1>
+      <h1>Name</h1>
+      <h1>Active</h1>
+      <h1>Trash</h1>
+    </div>
+    <div class="grid-rows" ng-repeat="condition in conditions | orderBy:'order' " >
+      <div class="centerer"><input type="text" ng-model="$index+1"></div>
+      <div class="centerer" ><h3>{{condition.name}}</h3></div>
+      <div class="centerer"><button class="submit-button" type="submit" ng-click="toggleActive($index)">{{isActive($index) && 'Active' || 'Inactive'}}</button></div>
+      <div class="centerer"><button class="submit-button" type="submit" ng-click="toggleTrashed($index)">{{isTrashed($index) && 'Restore' || 'Trash'}}</button>
+        <div class="arrows">
+          <div class="glyphicon glyphicon-arrow-up" ng-click="arrowUp($index)"></div>
+          <div class="glyphicon glyphicon-arrow-down"  ng-click="arrowDown($index)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<form action="/#/propertypromotions">
+  <button class="propertyPromotions-submit-button" ng-click="setFilters()">Save</button>
+</form>
+
+
+
+  <form action="/#/createcustomfilters">
+    <button class="propertyPromotions-submit-button">Create New Filter</button>
+  </form>
+</div>
+<!--END manage promotion filters Fernando Serrano-->

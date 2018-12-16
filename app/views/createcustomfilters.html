@@ -1,0 +1,126 @@
+<!--START create custom filter fernando:fserr010@fiu.edu-->
+<breaze-header></breaze-header>
+
+
+<div class="createCustomFilter">
+  <h1>Create new filter</h1>
+  <br>
+  <h4 style="margin-left: 30px">filter name</h4>
+  <input ng-model="filter.name" style="margin-left: 30px" type="text">
+  <br><br>
+  <h4 style="margin-left: 30px">priority</h4>
+  <input ng-model="filter.order" style="margin-left: 30px" type="number">
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Make Filter Active</div>
+        <div>
+          <button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':feature.checked}" ng-repeat="feature in filterActive" ng-click="feature.checked = feature.checked?false:true">
+            <i class="fa fa-check" ng-show="feature.checked"></i> {{feature.name}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Features & Amenities</div>
+        <div>
+          <button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':feature.checked}" ng-repeat="feature in filterFeatures" ng-click="feature.checked = feature.checked?false:true">
+            <i class="fa fa-check" ng-show="feature.checked"></i> {{feature.name}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Property Type</div>
+        <div>
+          <button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':type.checked}" ng-repeat="type in filterTypes" ng-click="type.checked = type.checked?false:true">
+            <i class="fa fa-check" ng-show="type.checked"></i> {{type.name}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Listing Type</div>
+        <div>
+          <button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':type.checked}" ng-repeat="type in filterTransType" ng-click="type.checked = type.checked?false:true">
+            <i class="fa fa-check" ng-show="type.checked"></i> {{type.name}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="results-filter-pane col-md-3">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Price </div>
+        <rzslider rz-slider-model="options.totalPrice.min"
+                  rz-slider-high="options.totalPrice.max"
+                  rz-slider-options="options.totalPrice.options">
+        </rzslider>
+        <div class="results-filter-buttons row">
+          <button class="results-filter-header-button cold-md-4">{{options.totalPrice.min}} k</button>
+          <button class="results-filter-header-button cold-md-4">{{options.totalPrice.max}} k</button>
+        </div>
+      </div>
+    </div>
+    <div class="results-filter-pane col-md-3">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Year built</div>
+        <rzslider rz-slider-model="options.buildingAge.min"
+                  rz-slider-high="options.buildingAge.max"
+                  rz-slider-options="options.buildingAge.options">
+        </rzslider>
+        <div class="results-filter-buttons row">
+          <button class="results-filter-header-button cold-md-4">{{options.buildingAge.min}} years</button>
+          <button class="results-filter-header-button cold-md-4">{{options.buildingAge.max}} yreas</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="results-filter-pane col-md-3">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">total size)</div>
+        <rzslider rz-slider-model="options.livingArea.min"
+                  rz-slider-high="options.livingArea.max"
+                  rz-slider-options="options.livingArea.options">
+        </rzslider>
+        <div class="results-filter-buttons row">
+          <button class="results-filter-header-button cold-md-4">{{options.livingArea.min}} sqft</button>
+          <button class="results-filter-header-button cold-md-4">{{options.livingArea.max}} sqft</button>
+        </div>
+      </div>
+    </div>
+    <div class="results-filter-pane col-md-3">
+      <div main-Color class="results-filter-pane-bg">
+        <div class="results-filter-pane-title">Size (Lot)</div>
+        <rzslider rz-slider-model="options.squareMeters.min"
+                  rz-slider-high="options.squareMeters.max"
+                  rz-slider-options="options.squareMeters.options">
+        </rzslider>
+        <div class="results-filter-buttons row">
+          <button class="results-filter-header-button cold-md-4">{{options.squareMeters.min}} sqft</button>
+          <button class="results-filter-header-button cold-md-4">{{options.squareMeters.max}} sqft</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form>
+    <button class="submit-button" ng-click="saveNewFilter()">Save</button>
+  </form>
+<br><br>
+
+</div>
+<!--END create custom filters Fernando Serrano-->

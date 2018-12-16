@@ -1,0 +1,59 @@
+/* START Fernando Serrano:fserr010@fiu.edu */
+
+$main-color: #006990;
+$main-accent: #F0EA00;
+
+
+.propertyPromotions{
+
+  &-main-grid {
+    background-color: $main-color;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 2em;
+    padding: 1em;
+
+    .grid-rows {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: .5em;
+      color: $main-accent;
+      text-align: center;
+
+      .centerer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .arrows{
+        padding-left: 50px;
+      }
+
+      input[type="text"] {
+        width: 25%;
+        color: black;
+        text-align: center;
+      }
+    }
+  }
+
+  &-submit-button {
+    outline: none;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border: 3px solid #006990;
+    font-size: 1.35rem;
+    color: #006990;
+    margin-top: 1em;
+    &:hover {
+      background-color: #006990;
+      color: #F0EA00;
+      cursor: pointer;
+    }
+
+}
+
+
+}
+/* END Feranando Serrano */

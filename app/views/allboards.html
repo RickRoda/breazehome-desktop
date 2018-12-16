@@ -1,0 +1,68 @@
+<!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+<breaze-header></breaze-header>
+<div class="results">
+<div class="container-fluid results-wrapper" >
+		<!-- Results List -->
+		<div class="results-list-wrapper">
+			<div class="boards-header" id="myHeader">
+					<h1>Boards</h1>
+				</div>
+			<div class="results-list">
+				<div class="card-createboard-buttons col-md-3"  ng-click = "selectPropertyToBoard($event, board, board.name)"> 
+             				<button class="btn btn-primary btn-lg card-createboard-button"> <i class="glyphicon glyphicon-plus-sign"> </i>  Create board</button> 			
+      				 
+        				</div>
+				<div class="boards-header" id="myHeader">
+					<h1></h1>
+				</div>
+				
+        		<div>
+				<div class="row">
+					<div class="col-sm-10 col-md-12">
+							
+	
+							<!-- Card view -->
+							<div class="row" ng-class="{'hide': settings.listView === 'list'}">
+								<div>
+								<!--Board Card -->
+									<div ng-repeat="board in boards"  class="col-sm-6 col-md-3 animated fadeInUp" ng-mouseover="onCardsHover(board, $event)" ng-mouseleave="onCardsHoverOut($event)">
+		
+
+                				<div class="thumbnail card-wrapper">
+                  					<a ng-click="clickBoard(board)" class="card-link"></a>
+                  					
+                  						<!-- Remove board -->
+                  					 <i class="card-save glyphicon glyphicon-remove"  ng-click="selectBoard($event, board, board.id)" ></i> 
+               
+                  					
+                  					<!-- Image -->
+                  					<div class="card-image" style="background-image: url(../images/temp_home_placeholder/home{{$index%14+1}}.jpeg)"></div>
+                    				<div class="card-filter"></div>
+                  					
+                  					 <!-- Caption -->
+                  					<div class="caption">
+                    					<div class="card-top">
+                        				<span class="card-details">{{(board.name)}}</span>
+                        				</div>
+                        			</div>
+                  				
+                  				</div>
+                  				</div>
+                  				</div>
+                  				</div>
+                  
+
+								
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			
+		
+</div>
+
+<!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+
+	

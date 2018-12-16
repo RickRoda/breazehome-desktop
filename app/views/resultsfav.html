@@ -1,0 +1,85 @@
+<!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+<breaze-header></breaze-header>
+<div class="results">
+  <div class="container-fluid results-wrapper" >
+		<!-- Results List -->
+		<div class="results-list-wrapper">
+			<div class="results-list">
+				<div class="boards-header" id="myHeader">
+					<h1>Favorites</h1>
+				</div>
+					
+				<!-- Card view -->
+				<div class="row" ng-class="{'hide': settings.listView === 'list'}">
+					<div>
+						<!-- Property Card -->
+						<div ng-repeat="property in properties" class="col-sm-6 col-md-4 animated fadeInUp" ng-mouseover="onCardsHover(property, $event)" ng-mouseleave="onCardsHoverOut($event)">
+							<!-- 	{{property.brokerRemarks}}-->
+
+                <div class="thumbnail card-wrapper">
+                  <a ng-click="clickCard(property)" class="card-link"></a>
+                  
+                   
+                 
+                   
+                  <!-- Save property -->
+                   <i class="card-save glyphicon" ng-class="{'card-save-saved glyphicon-star': !property.saved, 'glyphicon-star-empty': property.saved}" ng-click="addPropertyToList($event, property, property.id)"></i> 
+				 
+				 <!-- Select property to be added to board -->
+                   <i class="card-pin glyphicon glyphicon-plus-sign" ng-click="selectPropertyToBoard($event, property, property.id)"></i> 
+                  
+                  <!-- Tag property -->
+                  <span class="card-tag-add" ng-click="openTagModal($event)">#</span>
+ 
+                  <!-- Add Tag Input -->
+                  <form class="card-tag-input-wrapper animated" ng-submit="addNewTag($event, property)">
+                    <input type="text" placeholder="enter a tag" class="card-tag-input" ng-model="settings.tag.newTag" />
+                    <i class="glyphicon glyphicon-remove" ng-click="closeTagModal($event)"></i>
+                    <i class="glyphicon glyphicon-ok" ng-click="addNewTag(property)"></i>
+                  </form>
+                  <!-- Image -->
+                  <div class="card-image" style="background-image: url(../images/placeholder.jpg)">
+                    <div class="card-filter"></div>
+                    <!-- <img ng-src="https://dev.breazehome.com{{property.thumbnailPath}}" class="animated fadeInUp" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" alt="..."> -->
+                    <!-- <img src="../images/placeholder.jpg" class="animated fadeInUp" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" alt="..."> -->
+                    <!-- Ashif,Openhouse -->
+                    {{openUpcoming=property.openHouseUpcoming;""}}
+										<div main-Color-Text accent-Color ng-if="openUpcoming&&openUpcoming.startsWith('Public')" class="card-openhouse col-md-11">  
+									         <span> {{property.openHouseUpcoming.split(": ")[1].replace("PM-","-")}}</span>
+										</div> 
+                    <!-- End of Ashif,Openhouse-->
+
+                    <!-- Tags -->
+                    <div class="card-tag-wrapper">
+                      <span ng-repeat="tag in tags track by $index" class="card-tag">#{{tag}}</span>
+                    </div>
+                  </div>
+
+                  <!-- Caption -->
+                  <div class="caption">
+                    <div class="card-top">
+                        <span class="card-price">${{formatPrice(property.currentPrice)|| '-'}}</span>
+                        <span class="card-bedrooms">{{property.bedsTotal || (($index*1234) % 4) + 1}} {{storage.language.content.resultsPage.cardBeds}}</span>
+                      </div>
+                      <div class="card-bottom">
+                        <div class="card-address">{{property.addressInternetDisplay}}{{formatCity(property.city)}}, FL</div>
+                        <div class="card-details">
+                            <span>Condo</span> &middot;
+                            <span>{{property.sqFtTotal || '-'}} {{storage.language.content.resultsPage.sqFt}}</span> &middot;
+                            <span>3.5 mon</span>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+
+       </div>
+       </div>
+  </div>
+  
+  
+</div>
+<!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->

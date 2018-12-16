@@ -1,0 +1,400 @@
+<div class="landing-background">
+  <div class="landing-login-wrapper" ng-style="{padding: loginShow ? '5px' : '0px'}">
+    <div accent-Color ng-class="{'landing-login-show': loginShow, 'landing-login-hide': !loginShow}">
+      <div class="landing-login-form" ng-show="loginShow">
+        <div class="landing-login-hint">{{storage.language.content.landingPage.loginSlogan}}</div>
+        <div class="row">
+          <div class="col-sm-12 col-md-8">
+
+            <!-- Login Form -->
+            <form ng-submit="login()" name="loginForm" novalidate="">
+
+              <!-- Login Fields -->
+              <div class="landing-login-inputs">
+                <input class="landing-login-input" type="text" placeholder="{{storage.language.content.landingPage.loginEmail}}"  ng-model="loginParams.username" required>
+                <input class="landing-login-input" type="password" placeholder="{{storage.language.content.landingPage.LoginPwd}}"  ng-model="loginParams.password" required>
+              </div>
+
+              <!-- Login Button -->
+              <div class="landing-login-buttons col-sm-12">
+                <button type="submit" class="btn btn-primary btn-lg landing-login-button" ng-disabled="loginForm.$invalid">Log In <i class="fa fa-lock" aria-hidden="true"></i></button>
+              </div>
+            </form>
+            <div class="col-sm-12 landing-links">
+              <a href="https://accounts.google.com/o/oauth2/auth?client_id=81021899393-jvj3ju77ac02pro1ijbdgeg2g7eku1gr.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A9000%2Foauth.html&scope=email&response_type=code"><img id="google_signin_btn" src="images/google_signin.png"></a>
+              <a href="https://www.facebook.com/v2.8/dialog/oauth?client_id=276711329466105&redirect_uri=http%3A%2F%2Flocalhost%3A9000%2Foauth-fb.html&scope=email,public_profile"><img id="fb_signin_btn" src="images/fb_signin.png"></a>
+
+              <a href="#/landing" ng-click="showResetPasswordModal($event)" id="forgot_login">{{storage.language.content.landingPage.LoginForgot}}</a>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="landing-create-wrapper row" ng-click="showRegistrationModal()">
+              <img id="landing-create-image" src="../images/landing/create_account.png">
+              <span class="landing-create-subtitle">{{storage.language.content.landingPage.LoginRegQues}}</span>
+              <h4 class="landing-create-title">{{storage.language.content.landingPage.LoginReg}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Top section -->
+  <div class="landing-top" main-Color>
+    <div class="landing-top-logo-decoration">
+      <div class="landing-top-logo"></div>
+    </div>
+    <div class="landing-header">
+      <div class="landing-header-menu" ng-class="{'direction-farsi': isFarsi, 'direction-eng': !isFarsi}">
+        <ul>
+          <!--<li class="landing-header-menu-item" ng-click="gotothemes()">Branding and Customization</li>-->
+          <li class="landing-header-menu-item">{{storage.language.content.landingPage.menuAbout}}</li> |
+          <li class="landing-header-menu-item">{{storage.language.content.landingPage.menuHelp}}</li> |
+          <li class="landing-header-menu-item">{{storage.language.content.landingPage.menuRules}}</li> |
+          <li class="landing-header-menu-item">{{storage.language.content.landingPage.menuListProp}}</li> |
+          <li class="landing-header-menu-item" ng-click="switchLanguage()">{{storage.language.content.landingPage.language}}</li>
+          <a class="landing-header-menu-login">
+            <span accent-Color-Gradient class="landing-header-slope"></span>
+            <span accent-Color class="landing-header-menu-item-reg">
+							<i ng-if="loginArrow" class="icon ion-chevron-up"></i>
+							<span ng-hide="user" ng-click="toggleLogin()">{{storage.language.content.landingPage.menuLogin}} / {{storage.language.content.landingPage.menuReg}}</span>
+							<span ng-hide="!user" ng-click="logout()">Log Out</span>
+						</span>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="landing-slogan animated fadeInUp" ng-class="{'direction-farsi': isFarsi, 'direction-eng': !isFarsi}">
+      <h1 accent-Color-Text slogan-Font class="mysloganmotto">{{storage.language.content.landingPage.slogan1}}</h1>
+      <h2 slogan-Font class="mysloganmotto">{{storage.language.content.landingPage.slogan2}}</h2>
+    </div>
+    <div class="landing-search animated fadeInUp">
+      <!-- Selected: {{selectedOptions}} -->
+      <!-- 			<div class="landing-type-dropdown" ng-hide="typeHide">
+                      <div class="landing-type-content">
+                          <div class="landing-type-item" ng-class="{'landing-type-select': type.selected }" ng-repeat="type in typeOptions" ng-click="typeSelect(type)">{{type.PropertyDescription.String}}</div>
+                      </div>
+                  </div> -->
+      <div class="landing-search-pane">
+        <div main-Color-Text class="landing-search-icon glyphicon glyphicon-search"></div>
+        <!--
+                  <input class="landing-search-bar" ng-model="search_text" placeholder="Enter address, city, or zipcode" contenteditable="true" ng-focus="focusType()" ng-keydown="$event.keyCode === 13 && addressSearch()" autofocus>
+        -->
+        <!-- START auto complete:acris005@fiu.edu -->
+        <autocomplete class='landing-search-bar' ng-model="search_text" data="autocompleteData" attr-placeholder="Enter address, city, or zipcode" on-type="updateAutocomplete" ng-keydown="$event.keyCode === 13 && addressSearch()"></autocomplete>
+        <!-- END auto complete -->
+        <!-- <form class="item item-input landing-search-bar nopadding" ng-submit="submitSearch()"> -->
+        <!-- 					<span class="multiselect-tag" ng-repeat="c in typeOptions | filter:{selected:true}" ng-click="unwrap()">{{c.PropertyDescription.String}}<i class="icon ion-close" ng-click="uncheckType(c)" contenteditable="false"></i></span> -->
+        <!-- </input> -->
+        <!-- </form> -->
+      </div>
+
+      <!-- 			<div class="landing-search-pane">
+                      <multiselect choices="options" selected="selectedOptions"></multiselect>
+                  </div> -->
+
+      <!-- 	    	<div class="landing-search-pane">
+                      <div class="item item-input landing-map-bar" contenteditable="true" ng-focus="toggleMap()" ng-keydown="spacePressed($event)" ng-class="{'direction-farsi': isFarsi, 'direction-eng': !isFarsi}">
+                          <span class="multiselect-tag" ng-repeat="r in selectedRegion" ng-click="unwrap()">{{r}}<i class="icon ion-close" ng-click="uncheckRegion(r)" contenteditable="false"></i></span>
+                          <span><i class="icon ion-chevron-down"></i></span>
+                          <button class="button icon ion-android-map landing-search-map" ng-class="{'landing-search-map-farsi': isFarsi, 'landing-search-map-eng': !isFarsi}" ng-click="toggleMap()"></button>
+                      </div>
+                  </div>
+                  <div class="landing-search-pane landing-map-accordion" ng-show="mapShow">
+                      <div class="landing-map-wrapper">
+                          <div id="map" class="landing-map-view" ng-focus="stopParentMenu()"></div>
+                      </div>
+                  </div> -->
+      <div class="landing-search-pane">
+        <!-- <div class="switch">
+                  <span style="position: absolute; left: -60px; top: -5px;" ng-class="{'landing-toggle-true': switcher, 'landing-toggle-false': !switcher}">{{storage.language.content.landingPage.forRent}}</span>
+                  <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-click="toggleSwitcher()">
+                  <label for="cmn-toggle-1"></label>
+                  <span style="position: absolute; right: -50px; top: -5px;" ng-class="{'landing-toggle-true': !switcher, 'landing-toggle-false': switcher}">{{storage.language.content.landingPage.forSale}}</span>
+              </div> -->
+        <div class="dropdown landing-search-dropdown">
+          <button main-Color accent-Color-Text class="landing-search-dropdown-btn btn btn-default dropdown-toggle" type="button" id="priceDropdown" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+            <span class="glyphicon glyphicon-menu-down"></span>
+            <span id="rangePrice">{{storage.language.content.landingDropdown.price0}}</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a id="price0" ng-click="selectPrice(0)">{{storage.language.content.landingDropdown.price0}}</a></li>
+            <li><a id="price1" ng-click="selectPrice(1)">{{storage.language.content.landingDropdown.price1}}</a></li>
+            <li><a id="price2" ng-click="selectPrice(2)">{{storage.language.content.landingDropdown.price2}}</a></li>
+            <li><a id="price3" ng-click="selectPrice(3)">{{storage.language.content.landingDropdown.price3}}</a></li>
+            <li><a id="price4" ng-click="selectPrice(4)">{{storage.language.content.landingDropdown.price4}}</a></li>
+            <li><a id="price5" ng-click="selectPrice(5)">{{storage.language.content.landingDropdown.price5}}</a></li>
+            <li><a id="price6" ng-click="selectPrice(6)">{{storage.language.content.landingDropdown.price6}}</a></li>
+            <li><a id="price7" ng-click="selectPrice(7)">{{storage.language.content.landingDropdown.price7}}</a></li>
+          </ul>
+        </div>
+        <div class="dropdown landing-search-dropdown">
+          <button main-Color accent-Color-Text class="landing-search-dropdown-btn btn btn-default dropdown-toggle" type="button" id="priceDropdown" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+            <span class="glyphicon glyphicon-menu-down"></span>
+            <span id="rangeBed">{{storage.language.content.landingDropdown.bedrooms0}}</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a id="bed0" ng-click="selectBed(0)">{{storage.language.content.landingDropdown.bedrooms0}}</a></li>
+            <li><a id="bed1" ng-click="selectBed(1)">{{storage.language.content.landingDropdown.bedrooms1}}</a></li>
+            <li><a id="bed2" ng-click="selectBed(2)">{{storage.language.content.landingDropdown.bedrooms2}}</a></li>
+            <li><a id="bed3" ng-click="selectBed(3)">{{storage.language.content.landingDropdown.bedrooms3}}</a></li>
+            <li><a id="bed4" ng-click="selectBed(4)">{{storage.language.content.landingDropdown.bedrooms4}}</a></li>
+            <li><a id="bed5" ng-click="selectBed(5)">{{storage.language.content.landingDropdown.bedrooms5}}</a></li>
+          </ul>
+        </div>
+        <div class="dropdown landing-search-dropdown">
+          <button main-Color accent-Color-Text class="landing-search-dropdown-btn btn btn-default dropdown-toggle" type="button" id="priceDropdown" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+            <span class="glyphicon glyphicon-menu-down"></span>
+            <span id="rangeType">{{storage.language.content.landingDropdown.property0}}</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a id="type0" ng-click="selectType(0)">{{storage.language.content.landingDropdown.property1}}</a></li>
+            <li><a id="type1" ng-click="selectType(1)">{{storage.language.content.landingDropdown.property2}}</a></li>
+            <li><a id="type2" ng-click="selectType(2)">{{storage.language.content.landingDropdown.property3}}</a></li>
+            <li><a id="type3" ng-click="selectType(3)">{{storage.language.content.landingDropdown.property4}}</a></li>
+          </ul>
+        </div>
+        <div class="dropdown landing-search-dropdown">
+          <button main-Color accent-Color-Text class="landing-search-dropdown-btn btn btn-default dropdown-toggle" type="button" id="priceDropdown" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+            <span class="glyphicon glyphicon-menu-down"></span>
+            <span id="rangePurp">{{storage.language.content.landingDropdown.purpose0}}</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a id="purp0" ng-click="selectPurp(0)">{{storage.language.content.landingDropdown.purpose0}}</a></li>
+            <li><a id="purp1" ng-click="selectPurp(1)">{{storage.language.content.landingDropdown.purpose1}}</a></li>
+            <li><a id="purp2" ng-click="selectPurp(2)">{{storage.language.content.landingDropdown.purpose2}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="landing-search-pane">
+        <button accent-Color class="button landing-search-submit" ng-click="addressSearch()">{{storage.language.content.landingPage.search}}</button>
+      </div>
+      <div class="landing-search-browse">
+        <span ng-click="searchDefault()">Or browse all properties near Miami, Fl <i class="glyphicon glyphicon-chevron-right"></i></span>
+      </div>
+    </div>
+    <div class="landing-top-bottom-decoration"></div>
+  </div>
+
+  <chatbox
+    ng-if="lobbyChannel"
+    user="user"
+    channel="lobbyChannel"
+    messages="lobbyMessages">
+  </chatbox>
+
+
+  <!-- Mobile App -->
+  <div class="landing-app" main-Color>
+    <div class="landing-app-text">{{storage.language.content.landingPage.appTitle}}</div>
+    <div class="landing-app-bar"></div>
+    <div class="landing-app-slogan">{{storage.language.content.landingPage.appSlogan}}</div>
+    <div class="landing-app-store">
+      <div class="landing-app-store-apple"></div>
+      <div class="landing-app-store-google"></div>
+    </div>
+  </div>
+
+  <!-- Property preview -->
+  <!--START property promotion display fernando:fserr010@fiu.edu-->
+  <div class="landing-properties">
+    <div class="landing-properties-text" mainColor>{{storage.language.content.landingPage.propertyTitle}}</div>
+    <div class="landing-properties-bar"></div>
+    <div class="container">
+      <div class="landing-properties-list row">
+        <ul class="landing-properties-tabs-list">
+          <li ng-repeat="filter in filters | orderBy: 'order' " ng-class="{'tab-active':isSet($index)}"><a href="" ng-click="setTab($index); getProperties()">{{filter.name}}</a></li>
+        </ul>
+        <!--<div class="landing-properties-tabs-list">
+                    <button class="tablinks" ng-click="changeTab(event, '1')">{{storage.language.content.landingPage.propertyRecent}}</button>
+                    <button class="tablinks" ng-click="changeTab(event, '2')">{{storage.language.content.landingPage.propertyPop}}</button>
+                </div>-->
+
+
+        <div>
+          <slick dots="true" infinite="true" slides-to-show="3" slides-to-scroll="3" init-onload=true data=properties2  ng-if="ready" responsive="[
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                  infinite: true,
+                  dots: true
+                }
+              },
+              {
+                breakpoint: 992,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  dots: true
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  dots: true
+                }
+              }
+            ]">
+            <div ng-repeat="property in properties2 | limitTo:6" ng-init= "openUpcoming = property.openHouseUpcoming" ng-mouseover="onCardsHover(property, $event)" ng-mouseleave="onCardsHoverOut($event)">
+
+              <!-- Property Card -->
+                  <div class="thumbnail card-wrapper">
+                <a ng-click="clickCard(property)" class="card-link"></a>
+                <!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+                  <!-- Save property -->
+                   <i class="card-save glyphicon" ng-init="isSaved(property,property.id)" ng-class="{'card-save-saved glyphicon-star': property.saved, 'glyphicon-star-empty': !property.saved}" ng-click="addPropertyToList($event, property, property.id)"></i>
+                  <!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+
+                <!-- Tag property -->
+                <span class="card-tag-add" ng-click="openTagModal($event)">#</span>
+                <!-- Hide Property -Eithel-->
+                <div ng-if="user">
+                  <i class="card-toggler glyphicon" class="results-submit btn">
+                    <span ng-click="toggleProperty($event, property)">
+                      <i id="eithel3" ng-click="hideHiddenProperty()" ng-hide="!property.visible" class="icon-eye"></i>
+                      <i id="eithel4" ng-click="unhideHiddenProperty()" ng-hide="property.visible" class="icon-eye-none"></i>
+                    </span>
+                  </i>
+                </div>
+
+                <div ng-if="!user">
+                  <i class="card-toggler glyphicon">
+                    <span ng-click="userNotLogin()">
+                      <i id="eithel33" ng-hide="!property.visible" class="icon-eye"></i>
+                    </span>
+                  </i>
+                </div>
+                
+                <!-- Add Tag Input -->
+                <form class="card-tag-input-wrapper animated" ng-submit="addNewTag($event, property)">
+                  <input type="text" placeholder="enter a tag" class="card-tag-input" ng-model="settings.tag.newTag" />
+                  <i class="glyphicon glyphicon-remove" ng-click="closeTagModal($event)"></i>
+                  <i class="glyphicon glyphicon-ok" ng-click="addNewTag(property)"></i>
+                </form>
+                <!-- Image -->
+                <div class="card-image" style="background-image: url(../images/placeholder.jpg)">
+                  <div class="card-filter"></div>
+                  <!-- <img ng-src="https://dev.breazehome.com{{property.thumbnailPath}}" class="animated fadeInUp" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" alt="..."> -->
+                  <!-- <img src="../images/placeholder.jpg" class="animated fadeInUp" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" alt="..."> -->
+                  <!-- Ashif,Openhouse -->
+                  {{openUpcoming=property.openHouseUpcoming;""}}
+                  <div main-Color-Text accent-Color ng-if="openUpcoming&&openUpcoming.startsWith('Public')" class="card-openhouse col-md-11">
+                    <span> {{property.openHouseUpcoming.split(": ")[1].replace("PM-","-")}}</span>
+                  </div>
+                  <!-- End of Ashif,Openhouse-->
+
+                  <!-- Tags -->
+                  <div class="card-tag-wrapper">
+                    <span ng-repeat="tag in tags track by $index" class="card-tag">#{{tag}}</span>
+                  </div>
+                </div>
+
+                <!-- Caption -->
+                <div class="caption">
+                  <div class="card-top">
+                    <span class="card-price">${{formatPrice(property.currentPrice)|| '-'}}</span>
+                    <span class="card-bedrooms">{{property.bedsTotal || '-' }} {{storage.language.content.resultsPage.cardBeds}}</span>
+                    <span class="card-bathrooms">{{property.bathsFull || '-' }} {{storage.language.content.resultsPage.cardBath}} </span>
+                  </div>
+                  <div class="card-bottom">
+                    <div class="card-address">{{property.addressInternetDisplay}} {{formatCity(property.city)}}, FL</div>
+                    <div class="card-details">
+                      <span>Condo </span> &middot;
+                      <span>{{property.sqFtTotal || '-'}} {{storage.language.content.resultsPage.sqFt}}</span> &middot;
+                      <span>{{property.yearBuilt || '-'}} {{storage.language.content.resultsPage.year}}</span>
+                      <!-- END sortPropertiesbyAttributes -->
+                    </div>
+                    <!-- START View Competition for Properties : adubu002@fiu.edu -->
+                    <div class="card-details">
+                        <span>Total Views: {{property.count}}</span>
+                    </div>
+                    <!-- END View Competition for Properties -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </slick>
+        </div>
+
+
+      </div>
+    </div>
+    <a class="button landing-properties-more" href="#/results" title="Browse more homes">{{storage.language.content.landingPage.more}}</a>
+  </div>
+  <!--END property promotion display name-->
+
+  <!-- Features -->
+  <div class="landing-features" accent-Color>
+    <div class="landing-properties-text">{{storage.language.content.landingPage.featureTitle}}</div>
+    <div class="landing-properties-bar"></div>
+    <div class="landing-features-list">
+      <div class="landing-features-item">
+        <img src="../images/landing/icon-selection.png" height="90px" />
+        <div class="landing-features-title">{{storage.language.content.landingPage.featureHuge}}</div>
+        <div class="landing-features-text">
+          {{storage.language.content.landingPage.featureHugeText}}
+        </div>
+      </div>
+      <div class="landing-features-item">
+        <img src="../images/landing/icon-free.png" height="90px" />
+        <div class="landing-features-title">{{storage.language.content.landingPage.featureFree}}</div>
+        <div class="landing-features-text">
+          {{storage.language.content.landingPage.featureFreeText}}
+        </div>
+      </div>
+      <div class="landing-features-item">
+        <img src="../images/landing/icon-agents.png" height="90px" />
+        <div class="landing-features-title">{{storage.language.content.landingPage.featureAgent}}</div>
+        <div class="landing-features-text">
+          {{storage.language.content.landingPage.featureAgentText}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Test Imonials -->
+  <div class="landing-testimonials">
+    <div class="landing-testimonials-text">{{storage.language.content.landingPage.testimonialTitle}}</div>
+    <div class="landing-testimonials-bar"></div>
+    <div class="landing-testimonials-slagon">
+      <img src="../images/landing/quotes.png" />
+      {{storage.language.content.landingPage.testimonialSlogan}}
+    </div>
+    <div class="landing-testimonials-list">
+      <div class="landing-testimonials-item">
+        <div class="landing-testimonials-figure"></div>
+      </div>
+      <div class="landing-testimonials-item">
+        <div class="landing-testimonials-figure-selected"></div>
+        <div>BRIANNA TERRY</div>
+        <div>Renter</div>
+      </div>
+      <div class="landing-testimonials-item">
+        <div class="landing-testimonials-figure"></div>
+      </div>
+      <div class="landing-testimonials-item">
+        <div class="landing-testimonials-figure"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div class="landing-footer" main-Color>
+    <div class="landing-footer-decoration"></div>
+    {{storage.language.content.landingPage.copyright}}
+    <div class="landing-footer-menu">
+      <ul>
+        <li class="landing-footer-menu-item">{{storage.language.content.landingPage.menuAbout}}</li>
+        <li class="landing-footer-menu-item">{{storage.language.content.landingPage.menuContact}}</li>
+        <li class="landing-footer-menu-item">{{storage.language.content.landingPage.menuFAQ}}</li>
+        <li class="landing-footer-menu-item" ng-click="$state.go('login')">{{storage.language.content.landingPage.menuLogin}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

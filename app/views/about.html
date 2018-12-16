@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title></title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+  <link href='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
+  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+  <div id="map3"></div>
+  <script type="text/javascript">
+    var geometry = {"type":"Polygon","coordinates":[[[-95.1470947265625,42.2685019842801],   [-94.9493408203125,42.2400409352592],[-94.866943359375,42.3213241404624],[-95.0372314453125,42.4349444401055],[-95.1470947265625,42.2685019842801]]]};
+    var mmp_polygon = geometry;
+    geometry.crs = {"type": "name", "properties": {"name": "EPSG:4326"}};
+    $('#feeding_operation_map_coords_as_geojson').val(JSON.stringify(geometry));
+
+    var map = L.mapbox.map('map3', 'examples.map-9ijuk24y')
+            //.setView([42.337568198003744, -95.00701904296875], 10);
+
+    var featureGroup = L.featureGroup().addTo(map);
+
+    var drawControl = new L.Control.Draw({
+        draw: {
+            marker: false,
+            rectangle: false,
+            polyline: false,
+            circle: false
+        },
+        edit: {
+            featureGroup: featureGroup
+        }
+    }).addTo(map);
+
+
+    var line_points = mmp_polygon.coordinates[0];
+
+    // Mapbox wants lat and long swapped
+    line_points.forEach(function (entry) {
+        entry.reverse();
+    });
+
+
+    // Define polyline options
+    // http://leafletjs.com/reference.html#polyline
+    var polyline_options = {
+        color: '#000'
+    };
+
+    // Defining a polygon here instead of a polyline will connect the
+    // endpoints and fill the path.
+    // http://leafletjs.com/reference.html#polygon
+    var polygon = L.polygon(line_points, polyline_options).addTo(featureGroup);
+
+    var bounds = polygon.getBounds();
+    map.fitBounds(bounds, {padding: [50, 50]});
+  </script>
+</body>
+</html>

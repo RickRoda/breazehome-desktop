@@ -1,0 +1,28 @@
+<div class="modal fade">
+    <!--#2491 Added by Ronny Alfonso ralfo040@fiu.edu-->
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Answer your question</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Reset Password Form -->
+                <form name="answerQuestionForm" novalidate="">
+                    <div class="form-group">
+                        <label for="answer">{{answerQuestion.question}}</label>
+                        <input type="text" class="form-control" id="answer" placeholder="Answer your security question, it's case-insensitive" ng-model="answerQuestion.answer"
+                            required>
+                        <small class="form-text text-muted">For your security and in order to proceed to the next step, your answer must match with the one we
+                            have in records</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" ng-click="confirmUserAnswer()" ng-disabled="answerQuestionForm.$invalid" class="btn btn-primary" data-dismiss="modal">Reset Password</button>
+                <button type="button" data-dismiss="modal" ng-click="close()" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <!--END #2490-->
+</div>

@@ -1,0 +1,576 @@
+// Variables
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$brand-main: #006990;
+$brand-secondary: #d6db0f;
+$font-main: "Eczar", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-secondary: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+// IMPORT SASS MODULES
+@import "landing";
+@import "files";
+@import "themes";
+@import "results";
+@import "detail";
+@import "lists";
+@import "cards";
+/* START #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+@import "boards";
+/* END #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+@import "map";
+@import "chatbox";
+@import "admin";
+@import "propertyPromotions";
+@import "createCustomPromotion";
+@import "sortProperties";
+@import "customizeSort";
+ 
+ 
+.navbar-tools-dropdown li.saved-pages {
+		background-color: transparent;
+		text-align: center;
+		&:hover {
+			background-color: transparent;
+		}
+	}
+.saved {
+	&-page {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		background-color: transparent;
+		border-bottom: 2px solid #006990;
+		text-align: center;
+		color: white;
+		&:hover {
+			color: #d6db0f;
+			background-color: #006990;
+		}
+	}
+	&-arrow {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		background-color: transparent;
+		text-align: center;
+		vertical-align: top;
+		font-size: 10pt;
+		color: white;
+		&:hover {
+			color: #d6db0f;
+			background-color: #006990;
+		}
+	}
+}
+
+span.saved-new-count {
+    position: absolute;
+    top: -8px;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    &-zero{
+		color: white !important;
+    }
+}
+.saved-new-wrapper {
+    float: right;
+    color: #e2e209;
+    position: relative;
+    width: 48px;
+    background: black;
+}
+
+.navbar-tools-dropdown .saved-new {
+    text-align: center;
+}
+
+span.saved-new {
+    position: absolute;
+    bottom: -30px;
+    font-size: 0.85em;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    &-zero{
+		color: white !important;
+    }
+}
+body{
+	font-family: $font-secondary;
+}
+[ng-click] {
+	cursor: pointer;
+}
+.float{
+	&-right{
+		float: right;
+	}
+}
+
+// .navbar-nav li a {
+// 	padding: 10px;
+// }
+.nav > li > a {
+	padding: 0;
+}
+.nav-tabs{
+	display: inline-block;
+	width: 50%;
+}
+.nav-tabs > li > a{
+	transition: all 0.2s ease-out;
+	&:hover {
+		background-color: #89c770;
+		border-color: #89c770;
+	}
+}
+.navbar{
+	margin-bottom: 0;
+	background-color: #006990;
+	border: 0px;
+	border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(58, 58, 58, 0.33);
+    padding: 0 15px;
+    &-nav li{
+    	// margin: 0 15px;
+    	padding: 10px;
+    	color: white;
+    }
+    &-collapse{
+    	padding: 10px 0 !important;
+    }
+    &-tools{
+    	margin-left: 35px;
+    	li{
+    		width: 50px;
+    		text-align: center;
+    		padding-top: 15px;
+    		padding-bottom: 15px;
+    		color: white;
+    		font-size: 15px;
+    		cursor: pointer;
+    		transition: all 0.3s ease-out;
+    		margin: 0;
+    		&:hover{
+    			color: $brand-secondary;
+    			background: rgba(50, 51, 51, 0.5);
+    		}
+    		& i{
+				vertical-align: middle;
+    		}
+    	}
+    }
+}
+
+.navbar-header{
+	padding: 10px;
+	& .navbar{
+		&-logo{
+			line-height: inherit;
+			max-height: 50px;
+			vertical-align: middle;
+			margin-right: -1px;
+		}
+		&-title{
+			font-size: 1.5em;
+		    color: $brand-secondary;
+		    font-family: $font-main;
+		    vertical-align: middle;
+		    line-height: normal;
+		    text-decoration: none;
+		    margin-left: -15px;
+		    display: block;
+		    i{
+		    	vertical-align: middle;
+		    	font-size: medium;
+		    }
+		}
+		&-current{
+			font-size: medium;
+			color: white;
+			vertical-align: middle;
+		}
+	}
+}
+.navbar-tools{
+	&-signin{
+		padding-bottom: 10px;
+		display: block;
+		&-help{
+			padding: 0px 0px 8px 10px;
+			display: block;
+			color: white !important;
+			i{
+				top: 0;
+    			font-size: initial;
+			}
+		}
+	}
+	&-dropdown{
+		padding: 12px;
+	    background: #194e61;
+	    top: 40px;
+	    border-radius: 0;
+	    border: none;
+        left: -315px;
+    	min-width: 450px;
+    	color: $brand-secondary;
+    	overflow: hidden;
+    	&.user{
+    		min-width: 395px;
+    	}
+	    & li{
+	    	width: 100%;
+	    	background: $brand-main;
+	    	margin: 7px 0;
+	    	padding-top: 10px;
+	    	padding-bottom: 10px;
+	    	text-align: left;
+    		padding-left: 10px;
+	    }
+	    & .saved-title{
+    	    font-size: 1.2em;
+	    }
+	    & .saved-subtitle{
+	    	color: $brand-secondary;
+    	    float: right;
+    	    i{
+    	    	top: 0;
+	    	    font-size: initial;
+    	    }
+	    }
+	    & .manage-button {
+	    	color: $brand-secondary;
+	    }
+	}
+	&-user{
+		&-name{
+			padding-top: 8px;
+			color: $brand-secondary;
+			display: block;
+		}
+		&-email{
+			color: white;
+		}
+		&-form{
+			padding: 0 10px;
+			& input{
+				color: gray;
+				display: block;
+				width: 100%;
+				margin: 3px 0px;
+				padding: 8px;
+			}
+			& li{
+				text-align: center;
+				margin-top: 15px;
+			}
+		}
+	}
+}
+.navbar-default .navbar-nav > li > a	{
+	color: white;
+}
+
+.navbar-default .navbar-nav > li > a{
+	&:hover, &:focus	{
+		color: #ede80e;
+	}
+}
+.account-wrapper{
+	color: white;
+	float: right;
+	padding: 10px;
+}
+.form-group{
+	margin-bottom: 25px;
+}
+.modal{
+	&-deleteTag{
+		max-width: 600px;
+	}
+	&-content{
+		border-radius: 0 !important;
+		border: 10px solid #f0ea00 !important;
+		label{
+			font-size: 14pt;
+			font-weight: bold;
+			color: #006990;
+		}
+		input{
+		    box-shadow: none;
+		    background: #f1f1f1;
+		    padding: 10px;
+		    height: auto !important;
+		}
+	}
+	&-dialog{
+		top: 50% !important;
+	  transform: translateY(-50%) !important;
+	  /* START #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+		&-boards{
+        	top: 90% !important;
+			margin: 0 auto;
+        }
+      /* END #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+	}
+}
+
+
+// List view
+.property-table{
+	&-wrapper{
+		padding: 10px;
+		background-color: white;
+		margin-top: -10px;
+		tr{
+			cursor: pointer;
+		}
+		th{
+			text-align: center;
+			color: white;
+			background: $brand-main;
+			font-weight: 300;
+		}
+		td{
+			color: #676767;
+    		font-weight: 400;
+    		vertical-align: middle !important;
+    		text-align: center;
+		}
+	}
+	&-thumb img{
+		max-width: 165px;
+	}
+	&-address{
+		text-align: left !important;
+	}
+}
+.animated{
+	animation-duration: 0.5s !important;
+}
+.text-success{
+	color: #71b37d !important;
+}
+.table.table-bordered > thead > tr > th,
+	.table.table-bordered > thead > tr > td,
+	.table.table-bordered > tbody > tr > th,
+	.table.table-bordered > tbody > tr > td,
+	.table.table-bordered > tfoot > tr > th,
+	.table.table-bordered > tfoot > tr > td {
+		border: 2px solid #f1f1f1 !important;
+}
+.toast{
+	&-content{
+		font-size: 16px;
+		color: #F0E900;
+		padding: 10px 25px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	&-wrapper{
+		line-height: 25px;
+	    position: absolute;
+	    z-index: 999;
+	    bottom: -100px;
+	    left: 50%;
+	    background: rgba(0,0,0,0.75);
+	    box-shadow: 0 0 30px 0 rgba(0,0,0,0.52);
+	    opacity: 0;
+	    transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+	    -webkit-animation-duration: 1s;
+	    animation-duration: 1s;
+	    -webkit-animation-fill-mode: both;
+	    animation-fill-mode: both;
+	    transform: translateX(-50%);
+	    &-visible{
+	    	bottom: 20px;
+	    	opacity: 1;
+	    }
+	}
+	&-icon{
+	    background: #F0E900;
+	    display: inline-block;
+	    height: 100%;
+	    padding: 10px 16px;
+	    font-size: 1.5em;
+	    vertical-align: middle;
+	}
+}
+
+.history {
+	&-subtitle {
+		color: white;
+		float: right;
+	}
+	&-dropdown{
+		padding: 12px;
+	    background: #194e61;
+	    top: 40px;
+	    border-radius: 0;
+	    border: none;
+        left: -285px;
+    	min-width: 450px;
+    	color: $brand-secondary;
+    	overflow: hidden;
+    	& li{
+	    	width: 100%;
+	    	margin: 3px 0;
+	    	background: $brand-main;
+	    	padding-top: 0px;
+	    	padding-bottom: 0px;
+    		padding-left: 10px;
+	    	text-align: left;
+	    	overflow: hidden;
+	    	& a{
+    			color: white;
+	    	}
+	    }
+    	&-pane {
+    		height: 65px;
+    		display: flex;
+			justify-content: center;
+			&-inner {
+				align-self: center;
+			}
+    	}
+	    &-search {
+	    	&-left {
+	    		font-size: 9pt;
+	    		text-align: center;
+	    	}
+	    	&-magnifier {
+	    		font-size: 8pt;
+	    		top: 0px;
+	    	}
+	    	&-result {
+	    		color: $brand-secondary;
+	    		font-size: 14pt;
+	    	}
+	    	&-right {
+	    		font-size: 10pt;
+	    		border-left: 3px solid #194e61;
+	    	}
+	    	&-description {
+	    		margin: 0px;
+	    	}
+	    }
+	    &-property {
+	    	&-image {
+	    		overflow: hidden;
+	    		height: 75px;
+	    		background-position: center center;
+				background-size: cover;
+				background-image: url(../images/temp_home_placeholder/home2.jpeg);
+	    	}
+	    	&-right {
+	    		height: 75px;
+	    		font-size: 10pt;
+	    	}
+	    }
+    }
+}
+
+.dropdown-menu {
+	z-index: 99999;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+#themescenterleft {
+  text-align: center;
+  background-color: #F5F5F5;
+}
+.underlinetext{
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.themeborders {
+  height: 20%;
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+/*.themecustomcreate {
+  height: 20%;
+  background-color: #808080;
+  padding: 20px;
+  margin: 20px;
+}*/
+.themecustomapply {
+  height: 20%;
+  background-color: #808080;
+  padding: 20px;
+  margin: 20px;
+}
+.colorboxul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+.colorboxli {
+  float: right;
+}
+.colorboxlileft {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.colorboxli .colorboxdiv {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.colorboxli .colorboxdiv:hover {
+  background-color: #111;
+}
+.insertviewsmenu {
+  width: 750px;
+  margin: 0 auto;
+  list-style: none;
+}
+.insertviewsmenu .insertviewsli {
+  float: left;
+}
+.insertviewsmenu .insertviewsdiv {
+  display: block;
+  text-align: center;
+  width: 150px; /* fixed width */
+  text-decoration: underline;
+  padding-top: 20px;
+}
+//BEGIN PoLR UI Changes
+.radiostyle {
+    color:white;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding:4px;
+    display:inline-block;
+ }
+
+ .radiostyle:hover {
+    background-color: #23527c;
+    cursor:pointer;
+ }
+ input[type=radio]:checked+label {
+    /* Or `#a1:checked+label` if you only want it for that input */
+    background-color: #23527c;
+    color:yellow;
+ }
+ //END PoLR UI Changes

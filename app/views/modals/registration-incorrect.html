@@ -1,0 +1,22 @@
+<div class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Could Not Create Breazehome Account</h4>
+      </div>
+      <div class="modal-body">
+
+        <p>Sorry, we couldn't create an account for the following reasons:</p>
+        <p>
+          <ul>
+          <li ng-repeat="error in registrationError">{{error[0]}}</li>
+          </ul>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" ng-click="close()" class="btn btn-primary">Try Again</button>
+      </div>
+    </div>
+  </div>
+</div>

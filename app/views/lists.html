@@ -1,0 +1,312 @@
+<div class="results-search-wrapper">
+  <div class="results-icon">
+    <div class="results-icon-block" ng-class="{'results-icon-block-selected': settings.listView === 'card'}" ng-click="settings.listView = 'card'">
+      <i class="glyphicon glyphicon-th"></i>
+    </div>
+    <div class="results-icon-block" ng-class="{'results-icon-block-selected': settings.listView === 'list'}" ng-click="settings.listView = 'list'">
+      <i class="glyphicon glyphicon-align-justify"></i>
+    </div>
+  </div>
+	<form class="results-search-form" role="search">
+		<div class="results-input-wrapper">
+			<input type="text" class="results-input" placeholder="Search for a city, landmark, address, etc...">
+			<i class="results-input-icon glyphicon glyphicon-search"></i>
+		</div>
+
+     		<button class="results-filter-button" ng-click><i class="glyphicon glyphicon-menu-down"></i> Any price range / 0+ Bed / Any type / Sale &amp; Rent / Any tag</button>
+		<a class="results-submit btn">
+			<span class="glyphicon glyphicon-floppy-disk"></span>
+			Save Search
+		</a>
+		<div class="results-filter-dropdown" ng-class="{'animated slideInDown':!filterHide, ' animated slideOutUp':filterHide}" ng-hide="filterHide">
+			<div class="results-filter-content">
+				<div class="results-filter-header row">
+					<!-- <div class="results-filter-header-buttons col-md-12"> -->
+						<button id="apply" class="results-filter-header-button col-md-3" ng-click="applyFilter()">Apply filters</button>
+						<button class="results-filter-header-button col-md-3">Reset filters</button>
+					<!-- </div> -->
+				</div>
+				<div class="row">
+					<div class="results-filter-pane col-md-4">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Price range</div>
+							<rzslider
+				                rz-slider-model="options.totalPrice.min"
+				                rz-slider-high="options.totalPrice.max"
+				                rz-slider-options="options.totalPrice.options">
+			                </rzslider>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-4">{{options.totalPrice.min}} k</button>
+			                	<button class="results-filter-header-button cold-md-4">{{options.totalPrice.max}} k</button>
+			                </div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Type</div>
+							<div>
+								<button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':type.checked}" ng-repeat="type in filterTypes" ng-click="type.checked = type.checked?false:true">
+									<i class="fa fa-check" ng-show="type.checked"></i> {{type.name}}
+								</button>
+							</div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-1">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Bedrooms</div>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-1">1</button>
+			                	<button class="results-filter-header-button cold-md-1">2</button>
+			                </div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-1">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Bathrooms</div>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-1">3</button>
+			                	<button class="results-filter-header-button cold-md-1">4</button>
+			                </div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Type</div>
+							<div>
+								<button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':type.checked}" ng-repeat="type in filterTransType" ng-click="type.checked = type.checked?false:true">
+									<i class="fa fa-check" ng-show="type.checked"></i> {{type.name}}
+								</button>
+							</div>
+						</div>
+			     </div>
+
+				</div>
+				<div class="row">
+					<div class="results-filter-pane col-md-12">
+						<div class="results-filter-pane-tags-bg">
+							<div class="results-filter-pane-title">
+								Tagged by me
+								<span class="results-filter-pane-tags-all" ng-click>select all</span>
+							</div>
+							<span># Cool</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="more" class="results-filter-content-more" ng-class="{'animated slideInDown':!hideMore, ' animated slideOutUp':hideMore}" ng-hide="hideMore">
+				<div class="row">
+					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Price / square feet</div>
+							<rzslider
+				                rz-slider-model="options.totalPrice.min"
+				                rz-slider-high="options.totalPrice.max"
+				                rz-slider-options="options.totalPrice.options">
+			                </rzslider>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-4">{{options.totalPrice.min}} k</button>
+			                	<button class="results-filter-header-button cold-md-4">{{options.totalPrice.max}} k</button>
+			                </div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Year built</div>
+							<rzslider
+				                rz-slider-model="options.buildingAge.min"
+				                rz-slider-high="options.buildingAge.max"
+				                rz-slider-options="options.buildingAge.options">
+			                </rzslider>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-4">{{options.buildingAge.min}} years</button>
+			                	<button class="results-filter-header-button cold-md-4">{{options.buildingAge.max}} yreas</button>
+			                </div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Size (Living area)</div>
+							<rzslider
+				                rz-slider-model="options.livingArea.min"
+				                rz-slider-high="options.livingArea.max"
+				                rz-slider-options="options.livingArea.options">
+			                </rzslider>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-4">{{options.livingArea.min}} sqft</button>
+			                	<button class="results-filter-header-button cold-md-4">{{options.livingArea.max}} sqft</button>
+			                </div>
+						</div>
+     					</div>
+					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Size (Lot)</div>
+							<rzslider
+				                rz-slider-model="options.squareMeters.min"
+				                rz-slider-high="options.squareMeters.max"
+				                rz-slider-options="options.squareMeters.options">
+			                </rzslider>
+			                <div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-4">{{options.squareMeters.min}} sqft</button>
+			                	<button class="results-filter-header-button cold-md-4">{{options.squareMeters.max}} sqft</button>
+			                </div>
+						</div>
+     					</div>
+				</div>
+				<div class="row">
+					<div class="results-filter-pane col-md-6">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Features & Amenities</div>
+			                <div>
+								<button class="results-filter-checkbox" ng-class="{'results-filter-checkbox-checked':feature.checked}" ng-repeat="feature in filterFeatures" ng-click="feature.checked = feature.checked?false:true">
+									<i class="fa fa-check" ng-show="feature.checked"></i> {{feature.name}}
+								</button>
+							</div>
+						</div>
+     					</div>
+     					<div class="results-filter-pane col-md-3">
+						<div class="results-filter-pane-bg">
+							<div class="results-filter-pane-title">Time on breazehome</div>
+							<div class="results-filter-buttons row">
+			                	<button class="results-filter-header-button cold-md-1">Any</button>
+			                </div>
+						</div>
+     					</div>
+     					<div class="results-filter-pane col-md-3">
+
+     					</div>
+				</div>
+			</div>
+			<div class="results-filter-bottom">
+				<span class="results-filter-bottom-slope results-filter-bottom-slope-left"></span>
+				<div class="results-filter-bottom-buttons col-md-3">
+					<button ng-click="expandMore()"  class="results-filter-bottom-button col-md-3">{{moreFilterText}}</button>
+					<span>|</span>
+					<button class="results-filter-bottom-button col-md-3" ng-click="closeFilter()">
+						Close filter
+					</button>
+				</div>
+				<span class="results-filter-bottom-slope results-filter-bottom-slope-right"></span>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="detail-divider-dash"></div>
+<div class="container-fluid results-wrapper">
+
+	<!-- Lists View -->
+	<div class="col-sm-6 lists-list-wrapper animated fadeIn">
+		<div class="lists-top animated fadeInDown">
+			<div>
+				<h3 class="lists-title">My Saved Homes</h3>
+				<div class="lists-actions-wrapper">
+					<span class="lists-actions" ng-click="settings.tag.editMode = !settings.tag.editMode">{{settings.tag.editMode ? 'Done' : 'Manage Tags'}}</span>
+					<span class="lists-actions">Notification Options</span>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<span class="lists-sub">All your saved &amp; tagged homes in one place</span>
+			<div class="lists-block-wrapper">
+
+				<!-- Tag list -->
+				<div class="lists-block-untag" ng-click="clearTagFilters()" ng-class="{'lists-block-untag-selected': settings.clear}">Untagged</div>
+				<div class="lists-block animated bounceIn" ng-repeat="tag in tags" ng-click="selectTag($index, tag)">
+					<div class="lists-block-title" ng-class="{'lists-block-selected': tag.selected, 'lists-block-edit': settings.tag.editMode}">
+						#{{tag.tag}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Properties -->
+		<div class="lists-bottom">
+
+			<!-- Card view -->
+			<div ng-class="{'hide': settings.listView === 'list'}" ng-repeat="property in properties" class="col-sm-6 col-md-4 animated fadeInUp">
+				<div class="thumbnail card-wrapper">
+					<a ng-href="#/results/{{property.id}}" class="card-link"></a>
+					<!-- Save property -->
+					<i class="card-save glyphicon card-save-saved glyphicon-star" ng-click="unsaveProperty($index)"></i>
+
+					<!-- Tag property -->
+					<span class="card-tag-add" ng-click="openTagModal($event)">#</span>
+
+					<!-- Add Tag Input -->
+					<form class="card-tag-input-wrapper animated" ng-submit="addNewTag($event, property)">
+						<input type="text" placeholder="enter a tag" class="card-tag-input" ng-model="settings.tag.newTag" />
+						<i class="glyphicon glyphicon-remove" ng-click="settings.tag.addedTag = false"></i>
+						<i class="glyphicon glyphicon-ok" ng-click="addNewTag(property)"></i>
+					</form>
+
+					<!-- Image -->
+					<div class="card-image">
+						<div class="card-filter"></div>
+						<img ng-src="https://dev.breazehome.com{{property.thumbnailPath}}" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" class="animated fadeInUp" alt="...">
+
+						<!-- Tags -->
+						<div class="card-tag-wrapper">
+							<span class="card-tag" ng-repeat="tag in property.tags track by $index">#{{tag}}</span>
+						</div>
+					</div>
+
+					<!-- Caption -->
+					<div class="caption">
+						<div class="card-top">
+					      <span class="card-price">${{formatPrice(property.currentPrice)|| '-'}}</span>
+					      <span class="card-bedrooms">{{property.bedsTotal || (($index*1234) % 4) + 1}} Bd</span>
+					  	</div>
+					  	<div class="card-bottom">
+					  		<div class="card-address">{{formatCity(property.city) || 'Undisclosed Address'}}</div>
+					  		<div class="card-details">
+					      		<span>Condo</span> &middot;
+					      		<span>{{property.sqFtTotal || '-'}} sqft</span> &middot;
+					      		<span>3.5 mon</span>
+					  		</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- Table view -->
+			<div ng-class="{'hide': settings.listView === 'card'}" class="animated fadeInUp property-table-wrapper table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><i class="glyphicon glyphicon-picture"></i></th>
+							<th><i class="glyphicon glyphicon-map-marker"></i></th>
+							<th><i class="glyphicon glyphicon-usd"></i></th>
+							<th>Sqft</th>
+							<th>Bed</th>
+							<th>Bath</th>
+							<th>Type</th>
+							<th>Gym</th>
+							<th>Pool</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="property in settings.properties">
+							<td class="property-table-thumb"><img ng-src="https://dev.breazehome.com{{property.thumbnailPath}}" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" class="animated fadeInUp" alt="..."></td>
+							<td class="property-table-address">1726 Ponce De Leon Blvd, Coconut Grove</td>
+							<td>300k</td>
+							<td>3,456</td>
+							<td><strong>4</strong></td>
+							<td><strong>2</strong></td>
+							<td>Apartment</td>
+							<td><i class="glyphicon glyphicon-ok text-success"></i></td>
+							<td><i class="glyphicon glyphicon-remove text-danger"></i></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<span class="lists-hint" ng-if="properties.length === 0">No Properties Yet</span>
+		</div>
+	</div>
+
+	<!-- Map View -->
+	<div class="col-sm-6 results-map-wrapper">
+		<div id="map-list" class="results-map">
+			<span class="results-map-content"></span>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,172 @@
+  <div class="results-search-wrapper">
+  	<form class="results-search-form navbar-form navbar-left" role="search">
+  		<div class="form-group">
+  			<input type="text" class="results-input form-control" placeholder="Search">
+  		</div>
+  		<div class="dropdown">
+  		  <a class="results-filter-dropdown btn btn-default dropdown-toggle" id="priceDropdown" data-toggle="dropdown">
+  		  	<span class="glyphicon glyphicon-menu-down"></span>
+  		  	<span id="rangePrice">Any Price</span>
+  		  </a>
+  		  <ul class="dropdown-menu">
+                <li><a id="price0" ng-click="selectPrice(0)">Any Price</a></li>
+                <li><a id="price1" ng-click="selectPrice(1)">$ 0 - 1k</a></li>
+                <li><a id="price2" ng-click="selectPrice(2)">$ 1k - 10k</a></li>
+                <li><a id="price3" ng-click="selectPrice(3)">$ 10k - 100k</a></li>
+                <li><a id="price4" ng-click="selectPrice(4)">$ 100k - 150k</a></li>
+                <li><a id="price5" ng-click="selectPrice(5)">$ 150k - 200k</a></li>
+                <li><a id="price6" ng-click="selectPrice(6)">$ 200k - 250k</a></li>
+                <li><a id="price7" ng-click="selectPrice(7)">$ 250k - 1000k</a></li>
+             </ul>
+  		</div>
+  		<div class="dropdown">
+  		  <a class="results-filter-dropdown btn btn-default dropdown-toggle" id="priceDropdown" data-toggle="dropdown">
+  		  	<span class="glyphicon glyphicon-menu-down"></span>
+  		  	<span id="rangeBed">0+ Bedrooms</span>
+  		  </a>
+  		  <ul class="dropdown-menu">
+  			<li><a id="bed0" ng-click="selectBed(0)">0+ Bedrooms</a></li>
+  			<li><a id="bed1" ng-click="selectBed(1)">1+ Bedrooms</a></li>
+  			<li><a id="bed2" ng-click="selectBed(2)">2+ Bedrooms</a></li>
+  			<li><a id="bed3" ng-click="selectBed(3)">3+ Bedrooms</a></li>
+  			<li><a id="bed4" ng-click="selectBed(4)">4+ Bedrooms</a></li>
+  			<li><a id="bed5" ng-click="selectBed(5)">5+ Bedrooms</a></li>
+             </ul>
+  		</div>
+  		<div class="dropdown">
+  		  <a class="results-filter-dropdown btn btn-default dropdown-toggle" id="priceDropdown" data-toggle="dropdown">
+  		  	<span class="glyphicon glyphicon-menu-down"></span>
+  		  	<span id="rangeType">Property types</span>
+  		  </a>
+  		  <ul class="dropdown-menu">
+  			<li><a id="type0" ng-click="selectType(0)">House</a></li>
+  			<li><a id="type1" ng-click="selectType(1)">Condo</a></li>
+  			<li><a id="type2" ng-click="selectType(2)">Townhome</a></li>
+  			<li><a id="type3" ng-click="selectType(3)">Multi-Family</a></li>
+  			<li><a id="type4" ng-click="selectType(4)">Land</a></li>
+  			<li><a id="type5" ng-click="selectType(5)">Mobile</a></li>
+             </ul>
+  		</div>
+  		<div class="dropdown">
+  		  <a class="results-filter-dropdown btn btn-default dropdown-toggle" id="priceDropdown" data-toggle="dropdown">
+  		  	<span class="glyphicon glyphicon-menu-down"></span>
+  		  	<span id="rangePurp">Rent & Sale</span>
+  		  </a>
+  		  <ul class="dropdown-menu">
+  			<li><a id="purp0" ng-click="selectPurp(0)">Sale & Rent</a></li>
+  			<li><a id="purp1" ng-click="selectPurp(1)">For Rent</a></li>
+  			<li><a id="purp2" ng-click="selectPurp(2)">For Sale</a></li>
+            </ul>
+  		</div>
+  		<div class="dropdown">
+  			<a class="results-filter-dropdown results-filter-more btn btn-default dropdown-toggle" class="results-filter-dropdown btn btn-default dropdown-toggle" data-toggle="dropdown">
+  				+ More Filter Settings
+  			</a>
+  			<ul class="dropdown-menu">
+                <li>
+                	<div class="results-filter-more-test" ng-click="test()">
+                		test
+                	</div>
+                </li>
+             </ul>
+  		</div>
+  		<a class="results-submit btn">
+  			<span class="glyphicon glyphicon-floppy-disk"></span>
+  			Save Search
+  		</a>
+  	</form>
+  </div>
+<div class="container-fluid results-wrapper">
+
+	<!-- Lists View -->
+	<div class="col-sm-6 lists-list-wrapper animated fadeIn">
+		<div class="lists-top animated fadeInDown">
+			<div class="lists-actions-wrapper">
+				<span class="lists-actions">Notification Options</span>
+				<span class="lists-actions">Create New List</span>
+			</div>
+			<div class="lists-block-wrapper">
+				<div class="lists-icons">
+					<div class="lists-block-icon" ng-class="{'lists-block-icon-selected': settings.listView === 'card'}" ng-click="settings.listView = 'card'">
+						<i class="glyphicon glyphicon-th"></i>
+					</div>
+					<div class="lists-block-icon" ng-class="{'lists-block-icon-selected': settings.listView === 'list'}" ng-click="settings.listView = 'list'">
+						<i class="glyphicon glyphicon-align-justify"></i>
+					</div>
+				</div>
+				<div class="lists-block" ng-repeat="list in lists" ng-class="{'lists-block-selected': settings.selectedList === $index}" ng-click="selectList($index)">
+					<div class="lists-block-title">
+						{{list.title}}
+					</div>
+					<div class="lists-block-share"><i class="glyphicon glyphicon-share"></i></div>
+				</div>
+			</div>
+		</div>
+		<!-- Properties -->
+		<div class="lists-bottom">
+
+			<!-- Card view -->
+			<div ng-class="{'hide': settings.listView === 'list'}" ng-repeat="property in settings.properties" class="col-sm-6 col-md-4 animated fadeInUp" ng-mouseover="propertyMouseDown($event)" ng-mouseleave="onCardsHoverOut()">
+			  <div class="thumbnail card-wrapper card-draggable ui-widget-content">
+			  	<div class="card-image">
+			  		<div class="card-filter"></div>
+			  		<img src="images/property.jpg" alt="...">
+			  	</div>
+			    <div class="caption">
+		    		<div class="card-top">
+				      <span class="card-price">$300,000</span>
+				      <span class="card-bedrooms">2 Bd</span>
+			      	</div>
+			      	<div class="card-bottom">
+			      		<div class="card-address">1726 Ponce De Leon Blvd, Coconut Grove</div>
+			      		<div class="card-details">
+				      		<span>Condo</span> &middot;
+				      		<span>1,655 sqft</span> &middot;
+				      		<span>3.5 mon</span>
+			      		</div>
+		      		</div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Table view -->
+			<div ng-class="{'hide': settings.listView === 'card'}" class="animated fadeInUp property-table-wrapper table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><i class="glyphicon glyphicon-picture"></i></th>
+							<th><i class="glyphicon glyphicon-map-marker"></i></th>
+							<th><i class="glyphicon glyphicon-usd"></i></th>
+							<th>Sqft</th>
+							<th>Bed</th>
+							<th>Bath</th>
+							<th>Type</th>
+							<th>Gym</th>
+							<th>Pool</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="property in settings.properties">
+							<td class="property-table-thumb"><img src="images/property.jpg"></td>
+							<td class="property-table-address">1726 Ponce De Leon Blvd, Coconut Grove</td>
+							<td>300k</td>
+							<td>3,456</td>
+							<td><strong>4</strong></td>
+							<td><strong>2</strong></td>
+							<td>Apartment</td>
+							<td><i class="glyphicon glyphicon-ok text-success"></i></td>
+							<td><i class="glyphicon glyphicon-remove text-danger"></i></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+					
+	<!-- Map View -->
+	<div class="col-sm-6 results-map-wrapper">
+		<div id="map-list" class="results-map">
+			<span class="results-map-content"></span>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<a
+  class="admin-card-container"
+  ng-href="{{href}}"
+  target="{{external ? '_blank' : '_self'}}"
+>
+  <div class="admin-card">
+    <div class="info">
+      <h5><b>{{subtitle}}</b></h5>
+      <h3><b>{{ctitle}}</b></h3>
+    </div>
+    <div class="description" ng-transclude></div>
+    <div class="tile" ng-style="{'background-color': color}">
+      <span class="glyphicon {{icon}}" aria-hidden="true"></span>
+    </div>
+    <div class="external" title="External link" ng-if="external">
+      <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+    </div>
+  </div>
+</a>

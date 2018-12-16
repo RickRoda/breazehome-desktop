@@ -1,0 +1,50 @@
+<breaze-header></breaze-header>
+<div>
+  <div class="row">
+    <div class="col-sm-5">   
+      <div>
+        <h4>
+          &nbsp;<i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;<span class="underlinetext">Customize Breazehome</span>
+          <span style="float:right" ng-click="returnToThemes()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</span>
+        </h4>
+      </div>
+      <div class="themeborders">
+        <h5>Theme Name</h5>
+        <input type="text" ng-model="newTheme.themeName" />
+      </div>
+      <div class="themeborders">
+        <h5>Main color</h5>
+        <input class="maincoloronchange" type="color" ng-change="onChangeColorMain()" ng-model="newTheme.color_1"/> <input class="maincoloronchange" type="text" ng-model="newTheme.color_1" />  
+      </div>
+      <div class="themeborders">
+        <h5>Additional color</h5>
+        <input class="addcoloronchange" type="color" ng-change="onChangeColorAdditional()" ng-model="newTheme.color_2" /> <input class="addcoloronchange" type="text" ng-model="newTheme.color_2" />
+      </div>
+      <div class="themeborders">
+        <h5>Accent color</h5>
+        <input class="accentcoloronchange" type="color" ng-change="onChangeColorAccent()" ng-model="newTheme.color_3" /> <input class="accentcoloronchange" type="text" ng-model="newTheme.color_3" />
+      </div>
+      <div class="themeborders">
+        <h5>Supplementary #1</h5>
+        <input class="s1coloronchange" type="color" ng-change="onChangeColorSupp1()" ng-model="newTheme.color_4" /> <input class="s1coloronchange" type="text" ng-model="newTheme.color_4" />
+      </div>
+      <div class="themeborders">
+        <h5>Supplementary #2</h5>
+        <input class="s2coloronchange" type="color" ng-change="onChangeColorSupp2()" ng-model="newTheme.color_5" /> <input class="s2coloronchange" type="text" ng-model="newTheme.color_5" />
+      </div>
+      <div class="themeborders">
+        <h5>Supplementary #3</h5>
+        <input class="s3coloronchange" type="color" ng-change="onChangeColorSupp3()" ng-model="newTheme.color_6" /> <input class="s3coloronchange" type="text" ng-model="newTheme.color_6" />
+      </div>
+      <div class="themeborders">
+        <button style="background-color:#f0e900; border:solid black 1px; padding: 10px 15px;" type="button" class="btn tryedit" ng-click="editTheme(newTheme, tempcurrentTheme.id)"><i class="fa fa-check" aria-hidden="true"></i> Save theme</button>
+        <button style="background-color:white; border:solid black 1px; padding: 10px 15px;" type="button" class="btn" ng-click="createTheme(tempcurrentTheme.themeName)"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save as new</button>
+        <button style="background-color:#0094ff; border:solid black 1px; padding: 10px 15px;" type="button" class="btn trydel" ng-click="deletemyTheme(newTheme, tempcurrentTheme.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete theme</button>
+      </div>
+    </div>
+    <div class="themePreviewSection col-sm-7">
+      <h4 class="underlinetext">Preview</h4>
+      <div id="showlandingpage" my-preview style="width:100%;height:850px;overflow: auto;"></div>
+    </div>
+  </div>
+</div>

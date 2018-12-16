@@ -1,0 +1,95 @@
+<div class="modal fade">
+<!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+  <div class="modal-dialog-boards modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="done($event)" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1 class="modal-title">Name your board and add properties to it</h1>
+      </div>
+      <div class="modal-body">
+      <div class="card-createboard-wrapper" ng-style="{padding: !createboardShow ? '5px' : '0px'}">
+		<div accent-Color ng-class="{'card-createboard-show': !createboardShow, 'card-createboard-hide': createboardShow}">
+			<div class="card-createboard-form" ng-show="!createboardShow">
+      	<div class="card-createboard-form"">
+							<div class="card-createboard-hint"> New board name</div>
+								<div class="row">
+								<div class="col-sm-12 col-md-8">
+
+									<!-- Name board Form -->
+									<form name="createboardForm" novalidate="">
+
+									<!-- Fields -->
+									<div class="card-createboard-inputs">
+									<input class="card-createboard-input" type="text" placeholder="unique name"  ng-model="createboardParam.name" required>
+							
+									</div>
+ 
+ 									<!-- Button -->
+									<div class="card-createboard-buttons col-sm-15">
+									<button ng-click="createboard($event)" class="btn btn-primary btn-lg card-createboard-button" >Save name</button>
+									</div>
+ 							
+							
+							</form>
+							</div>
+							</div>
+							</div>
+							</div>
+			</div>
+			</div>
+      <div class="results">
+<div class="container-fluid results-wrapper" >
+		<!-- Results List -->
+		<div class="results-list-wrapper">
+			<div class="col-sm-10 col-md-12">
+      				 	
+        					</div>	
+			<div class="results-list">
+        	<div class="row">
+					
+							<!-- Card view -->
+							<div>
+							
+							<div class="row" ng-class="{'hide': settings.listView === 'list'}">
+														
+								<!--Board Card -->
+									<div ng-repeat="property in properties"  class="col-sm-5 col-md-5 animated fadeInUp">
+		
+
+                				<div class="thumbnail card-wrapper">
+                  					
+                  						<!-- Select property to be added to board -->
+                  					 <i class="card-save glyphicon" ng-class="{'card-save-saved glyphicon-unchecked': !property.selected, 'glyphicon-ok-sign': property.selected}" ng-click="selectProperty($event,property.id, property)" ></i> 
+                  			
+                  					<!-- Image -->
+                  					<div class="card-image" style="background-image: url(../images/temp_home_placeholder/home{{$index%14+1}}.jpeg)"></div>
+                    				<div class="card-filter"></div>
+                  					
+                  					 <!-- Caption -->
+                  					<div class="caption">
+                    					<div class="card-top">
+                        				<span class="card-details">{{property.addressInternetDisplay}}     {{property.city}}</span>
+                        				</div>
+                        			</div>
+                  				</div>
+                  				
+                  				</div>
+                  				
+                  				
+                  				</div>
+                  				</div>
+                  				</div>
+                  </div>
+
+								
+						</div>
+					</div>
+				</div>
+        	
+       </div>
+       </div>
+       </div>
+       </div> 	
+<!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->            	
+        			</div>
+    			

@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>Oauth Facebook Registration</title>
+	</head>
+		<style>
+			body{
+				background: #006990;
+			    display: table;
+			    height: 100%;
+			    width: 100%;
+			}
+			.spinner{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				animation-name: fadeInUp;
+				animation-duration: 0.5s;
+				animation-fill-mode: both;
+				animation-timing-function: ease-out;
+			}
+			.title{
+				color: #f0ea00;
+			    font-family: sans-serif;
+	    		font-weight: 100;
+			}
+			@keyframes fadeInUp {
+			  from {
+			    opacity: 0;
+			    transform: translate3d(0, 30%, 0);
+			  }
+
+			  to {
+			    opacity: 1;
+			    transform: none;
+			  }
+			}
+		</style>
+	<body>
+		<div class="spinner">
+			<h1 class="title">Signing into Breazehome...</h1>
+			<svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+			    <g fill="none" fill-rule="evenodd">
+			        <g transform="translate(1 1)" stroke-width="2">
+			            <circle stroke-opacity=".5" cx="18" cy="18" r="18"/>
+			            <path d="M36 18c0-9.94-8.06-18-18-18">
+			                <animateTransform
+			                    attributeName="transform"
+			                    type="rotate"
+			                    from="0 18 18"
+			                    to="360 18 18"
+			                    dur="1s"
+			                    repeatCount="indefinite"/>
+			            </path>
+			        </g>
+			    </g>
+			</svg>
+		</div>
+		<script type="text/javascript">
+			/*
+				This page will immediately redirect the user to 
+				the Breazehome landing page after setting the 
+				browser's local storage to contain an access code
+				from an OAuth 2.0 provider.
+			*/
+
+			function getURLParams(){
+				var url = window.location.href; 
+			    var code = url.split('code=')[1]
+			    if(code){
+			    	window.localStorage.setItem('auth', JSON.stringify({"code": code, "provider": "facebook"}))
+			    }
+			}
+			
+			getURLParams();
+			setTimeout(() => {
+				window.location.replace('/#/results')
+			}, 1000);
+		</script>
+	</body>
+</html>

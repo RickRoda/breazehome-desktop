@@ -1,0 +1,44 @@
+<style>
+.createList input{
+  display: inline-block;
+  padding: 5px;
+  border-radius: 4px;
+  margin: 0px 10px 20px 0;
+}
+.createList p{
+  margin-top: 20px;
+}
+button.btn-success{
+  margin: 15px;
+  margin-left: 0;
+}
+</style>
+
+<div class="modal fade" id="addToListModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close(); closeModal();" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Add Property To List</h4>
+      </div>
+      <div class="modal-body">
+
+
+          <button class="btn btn-success" ng-repeat="list in lists" data-dismiss="modal" ng-click="chooseList(list); close();">
+            {{list.title}}
+          </button>
+          
+          <br />
+          <div class="paddding createList">
+              <p>Or create a new list</p>
+              <input type="text" ng-model="createListParams.title" placeholder="title" />
+              <button type="submit" class="btn btn-primary" ng-click="createList()">Create List</button>
+              <p ng-show="listCreated" class="text-success">List created successfully!</p>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" ng-click="close(); closeModal();" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

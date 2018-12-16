@@ -1,0 +1,419 @@
+.card{
+	&-openhouse{
+		margin-top: 140px;
+        color: white;
+		font-size: 8pt;
+		padding: 2px 5px;
+		//width: 130px;
+		height: 20px;
+		background:#ffd600;
+        font-weight: bold;
+        text-align:center;
+    }
+	&-wrapper{
+		transition: all 0.3s ease-out;
+		cursor: pointer;
+		overflow: hidden;
+		&:hover{
+			transform: translateY(-10px);
+			box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+		}
+	}
+	/* START #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+	&-createboard {
+    	&-button {
+      		background-color: #006990;
+      		color: #f0ea00;
+      		width: 70%;
+      		border: 1px solid #006990;
+      		border-radius: 1px;
+    	}
+
+    	&-wrapper {
+      		background-color: #f0ea00;
+    	}
+
+    	&-show {
+      		height: 218px;
+      		background-color: white;
+      		transition: 0.3s all cubic-bezier(0.26, 0.99, 0.6, 1.17);
+    	}
+
+    	&-hide {
+      		height: 0px;
+      		background-color: rgb(240, 234, 0);
+
+    	}
+
+    	&-form {
+      		width: 60%;
+      		margin: 0px auto;
+    	}
+
+    	&-hint {
+      		font-size: 14pt;
+      		font-weight: bold;
+      		color: #006990;
+      		padding: 15px 0px;
+    	}
+
+    	&-input {
+      		width: 100%;
+      		display: inline !important;
+      		color: #6f6f6f;
+      		background: rgba(208, 208, 208, 0.27);
+      		padding: 7px 10px;
+      		border-radius: 2px;
+      		border-style: solid;
+      		border-width: 1px;
+      	}
+      	&-buttons {
+      		margin-top: 10px;
+      		padding: 0;
+      		padding-right: 6px;
+
+      		button {
+        		width: 70%;
+      		}
+    	}
+	/* END #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+
+    }
+	&-tag{
+		margin-right: 10px;
+		cursor: pointer;
+		vertical-align: middle;
+		&-input{
+			width: 100%;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+			border: none;
+			padding: 10px;
+			padding-left: 33px;
+			color: $brand-main;
+		    &-wrapper.animated{
+		    	position: absolute;
+				z-index: 9999;
+				width: 95%;
+				margin: 0 auto;
+				left: 0;
+				right: 0;
+				top: 7px;
+				opacity: 0;
+				animation-duration: 0.3s !important;
+				transform: translateY(-144%);
+				& .glyphicon-remove{
+					position: absolute;
+					top: 11px;
+					left: 6px;
+					font-size: 18px;
+					color: rgba(132, 132, 132, 0.5);
+					font-weight: 100;
+				}
+				& .glyphicon-ok{
+					position: absolute;
+					top: 11px;
+					right: 6px;
+					font-size: 18px;
+					color: rgba(132, 132, 132, 0.5);
+				}
+		    }
+		}
+		&-add{
+			color: white;
+			text-shadow: 0px 1px 4px rgba(16, 16, 16, 0.3);
+			position: absolute;
+			z-index: 9999;
+			top: 5px;
+			left: 34px;
+			font-size: 1.4em;
+		}
+	    &-wrapper{
+	    	text-align: left;
+	    	position: absolute;
+	    	bottom: 0;
+	    	color: white;
+	    	overflow-x: scroll;
+	    	overflow-y: hidden;
+	    	white-space: nowrap;
+	    	padding: 6px;
+	    	background: rgba(0, 0, 0, 0.5);
+	    	width: 100%;
+
+	    	&::-webkit-scrollbar {
+			    width: 5px;
+			    height: 5px;
+			}
+
+			&::-webkit-scrollbar-track {
+			    // -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+			    border-radius: 2px;
+	    		background-color: #656565;
+			}
+
+			&::-webkit-scrollbar-thumb {
+			    border-radius: 2px;
+			    // -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+	    		background-color: #f0ea01;
+			}
+	    }
+	    &-list{
+	    	transition: all 0.2s ease-out;
+	    	display: inline;
+	    	&:hover{
+	    		transform: translateY(-5px);
+    		    opacity: 0;
+	    	}
+	    }
+	}
+
+
+	&-tweet{
+		position: absolute;
+		top: 12px;
+		margin-right: 5px;
+		z-index: 9999;
+		transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+		text-shadow: 0px 1px 4px rgba(16, 16, 16, 0.3);
+		color: white;
+		left: 56px;
+		font-size: 1.4em;
+		&-tweeted{
+			color: #ffdb16;
+			animation-name: scaleSave;
+			animation-duration: 0.5s;
+		}
+	}
+
+	&-save{
+		position: absolute;
+		top: 10px;
+		margin-right: 5px;
+		z-index: 9999;
+		transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+		text-shadow: 0px 1px 4px rgba(16, 16, 16, 0.3);
+		color: gold;
+		left: 10px;
+		font-size: 1.2em;
+		&-saved{
+			color: #ffdb16;
+			animation-name: scaleSave;
+			animation-duration: 0.5s;
+		}
+
+	}
+	/* START #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+	&-pin{
+		position: absolute;
+		top: 10px;
+		margin-left: 47px;
+		z-index: 3000;
+		transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+		text-shadow: 0px 1px 4px rgba(16, 16, 16, 0.3);
+		color: gold;
+		left: 8px;
+		font-size: 1.2em;
+		&-pined{
+			color: #ffdb16;
+			animation-name: scalePin;
+			animation-duration: 0.5s;
+		}
+	}
+	/* END #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+    
+  /* START of Eithel's toggler and showAllButton */
+    &-toggler {
+      color: $brand-secondary;
+      text-shadow: 0px 1px 4px rgba(16, 16, 16, 0.3);
+      position: absolute;
+      z-index: 9999;
+      top: 5px;
+      right: 10px;
+      font-size: 1.3em;
+
+      &-toggle-icon {
+        color: darkgreen;
+        display: block;
+      }
+
+      &-toggle-icon:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-showAllButton {
+      width: 150px;
+      height: 35px;
+      margin-left: 24%;
+      margin-top: 1%;
+      color: $brand-secondary;
+      font-size: 1.5rem;
+      background-color: transparent;
+      border: 1px solid $brand-secondary;
+      border-radius:6px;
+      z-index: 9999;
+      top: 20px;
+      right: 20px;
+      transition: all 0.2s ease-out;
+      &:hover {
+          color: $brand-main;
+          background: $brand-secondary;
+          border: 1px solid $brand-main;
+      }
+    }
+  /* END of Eithel's toggler and showAllButton */
+	&-top-wrapper{
+		background: rgba(0, 0, 0, 0.35);
+		height: 34px;
+		position: absolute;
+		width: 100%;
+		z-index: 999;
+		transition: all 0.3s ease-out;
+	}
+	&-add{
+	    cursor: pointer;
+	    position: absolute;
+	    right: 10px;
+	    top: 10px;
+	    color: white;
+	    font-size: larger;
+	    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.5);
+	}
+	&-input{
+		position: absolute;
+	    z-index: 9999;
+	    bottom: -40px;
+	    width: 100%;
+	    background: transparent;
+	    color: white;
+	    border: none;
+	    padding-left: 20px;
+	    transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+	    outline: none;
+	    font-weight: 200;
+	    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	        color: white;
+	    }
+	    &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	       color: white;
+	       opacity: 1;
+	    }
+	    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+	       color: white;
+	       opacity: 1;
+	    }
+	    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	       color: #909;
+	    }
+	}
+	&-filter{
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.2);
+		position: absolute;
+	    transition: all 0.3s ease-out;
+	}
+	&-image{
+		position: relative;
+		height: 196px;
+		overflow: hidden;
+		background-position: center center;
+		background-size: cover;
+		img{
+			width: 100%;
+			opacity: 0;
+		}
+	}
+	&-link{
+		position: absolute;
+	    text-decoration: none !important;
+	    height: 100%;
+	    width: 100%;
+	    z-index: 100;
+	}
+	&-label{
+		padding: 5px;
+		overflow: hidden;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	}
+	&-button{
+		margin-top: 5px;
+	}
+	&-address{
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	&-top{
+		padding-bottom: 5px;
+	}
+	&-bottom{
+	    color: #7b7b7b;
+	}
+	&-price{
+		font-weight: 600;
+	    color: #3a3a3a;
+	    font-size: 16px;
+	}
+  //START sortPropertiesbyAttributes:lcaba026@fiu.edu
+	&-bedrooms{
+	    //float: right;
+	    margin-left: 7px;
+	    font-weight: 600;
+	    width: 50%;
+	    font-size: 16px;
+	}
+	&-bathrooms{
+	    margin-left: 7px;
+	    font-weight: 600;
+	    width: 50%;
+	    font-size: 16px;
+	}
+  //END sortPropertiesbyAttributes
+	&-details{
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	&-draggable{
+		cursor: -webkit-grab;
+	}
+	&-dragging{
+		// background: $brand-main;
+  //       max-width: 65px;
+  //       color: white;
+  //       border-radius: 2px;
+  //       font-size: 1.75em;
+  //       padding: 10px;
+  //       text-align: center;
+        // box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+        // cursor: -webkit-grabbing !important;
+	    & *:not(.test) {
+	    	// display: none;
+	    }
+	}
+}
+.thumbnail{
+	position: relative;
+	padding: 0;
+}
+.ui-draggable-dragging > .thumbnail{
+	box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5) !important;
+	z-index: 999;
+}
+
+@keyframes scaleSave{
+	0% {transform: scale(0)}
+	40% {transform: scale(1.5)}
+	100% {transform: scale(0)}
+}
+
+/* START #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+@keyframes scalePin{
+	0% {transform: scale(0)}
+	40% {transform: scale(1.5)}
+	100% {transform: scale(0)}
+}
+/* END #2357 and #2487 Andreina Rojas aroja108@fiu.edu */

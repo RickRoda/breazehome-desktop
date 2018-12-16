@@ -1,0 +1,147 @@
+#open-chat-box {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FFFD38;
+  color: #0D6A8E;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  box-shadow: 0 0 20px -6px #000;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#chat-box {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  background-color: #fff;
+  height: 300px;
+  width: 220px;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 20px -6px #000;
+  overflow-x: hidden;
+  z-index: 9999;
+  .top-bar {
+    background-color: #EFE74E;
+    position: relative;
+    font-size: 12px;
+    border-radius: 5px 5px 0 0;
+    height: 30px;
+    line-height: 20px;
+    box-sizing: border-box;
+    padding: 5px;
+    #close-chatbox {
+      position: absolute;
+      right: 5px;
+      top: 6px;
+      font-size: 15px;
+    }
+  }
+  .messages-container {
+    box-sizing: border-box;
+    padding: 10px;
+    padding-right: 25px;
+    height: 235px;
+    width: 235px;
+    overflow-y: scroll;
+    .message-box {
+      position: relative;
+      box-sizing: border-box;
+      padding: 5px 10px 10px;
+      border-radius: 10px;
+      background-color: #F3F3F3;
+      margin-bottom: 20px;
+      border-top-left-radius: 0;
+      width: 80%;
+      float: left;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      &.mine {
+        background-color: lighten(#EFE74E, 10);
+        border-top-right-radius: 0;
+        border-top-left-radius: 10px;
+        float: right;
+        .username {
+          left: auto;
+          right: 0;
+        }
+        .time {
+          right: auto;  
+          left: 10px;
+        }
+      }
+      .image {
+        border-radius: 5px;
+        overflow: hidden;
+        width: 100%;
+        img { width: 100%; }
+      }
+      .username {
+        position: absolute;
+        top: -12px;
+        left: 0;
+        font-size: 10px;
+      }
+      .time {
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+        font-size: 8px;
+        color: lighten(#000, 40);
+      }
+    }
+  }
+  .form-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    background-color: #E9EAF2;
+    input[type="file"] {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+    .add-pic {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 35px;
+      height: 35px;
+      text-align: center;
+      line-height: 35px;
+      margin: 0;
+      cursor: pointer;
+      color: #8F8E98;
+      transition: all .3s ease-in-out;
+      &.loaded { color: #333333; }
+      &:hover {
+        color: #333333;
+      }
+    }
+    input {
+      width: 100%;
+      height: 35px;
+      border: none;
+      background-color: transparent;
+      padding-left: 35px;
+      padding-right: 5px;
+      &::placeholder {
+        color: #8F8E98;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

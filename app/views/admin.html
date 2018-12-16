@@ -1,0 +1,164 @@
+<breaze-header></breaze-header>
+<div class="container-fluid admin-dash">
+  <div class="header">
+    <h2>Hi <b>{{user.profile.firstName}}</b>,</h2>
+    <h5>Welcome to your dashboard</h5>
+  </div>
+
+  <div class="quick-links">
+    <h4>Quick Links</h4>
+    <div class="row">
+        <div class="col-md-4 admin-card-container">
+        <admincard
+          subtitle="'Go to'"
+          ctitle="'Agent Approval'"
+          icon="'glyphicon-user'"
+          color="'#EC7D66'"
+          href="'#/agent_approval'"
+        >
+          This will take you to the agent approval panel where you can
+          see all users registered as agent that are pending approval.
+        </admincard>
+      </div>
+      <div class="col-md-4 admin-card-container">
+        <admincard
+          subtitle="'Go to'"
+          ctitle="'Backend API'"
+          icon="'glyphicon-cog'"
+          color="'#5E9DDA'"
+          external="true"
+          href="'http://api.breazehome.com'"
+        >
+          This will take you to the backend api which serves
+          all the data to this application.
+        </admincard>
+      </div>
+      <div class="col-md-4 admin-card-container">
+        <admincard
+          subtitle="'Go to'"
+          ctitle="'Portainer'"
+          icon="'glyphicon-th-list'"
+          color="'#B6DCA1'"
+          external="true"
+          href="'http://docker.breazehome.com'"
+        >
+          This is will take you to Portainer,
+          which is a tool that allows you to check the
+          status of all docker containers in the server.
+        </admincard>
+      </div>
+      <div class="col-md-4 admin-card-container">
+        <admincard
+          subtitle="'Turn on/off'"
+          ctitle="'SSL'"
+          icon="'glyphicon-lock'"
+          color="'#8166ED'"
+        >
+          To turn on SSL you need to login to the server and run
+          <b><u>docker-compose -f docker-compose-no-ssl.yml down</u></b>,
+          and finally <b><u>docker-compose up -d</u></b>. To turn off SSL first run
+          <b><u>docker-compose down</u></b> and then
+          <b><u>docker-compose -f docker-compose-no-ssl.yml up -d</u></b>.
+        </admincard>
+      </div>
+      <div class="col-md-4 admin-card-container">
+        <admincard
+          subtitle="'Make'"
+          ctitle="'Backups'"
+          icon="'glyphicon-refresh'"
+          color="'#DDBD67'"
+        >
+          <p>Here you can change the settings for the docker volume backups.
+          You can set the day of the week they should run, at waht time, and
+          how many of the latest backups should be kept.</p>
+          <form novalidate name="forms.backupConfigForm" style="padding: 10px;">
+            <div class="form-group">
+              <label for="archived">Number of archived backups</label>
+              <input type="number" name="archived" class="form-control" ng-model="backupConfig.archived" required>
+            </div>
+            <div class="form-group">
+              <label for="day">Day</label>
+              <select name="day" class="form-control" ng-model="backupConfig.day" required>
+                <option ng-repeat="day in days" value="{{day}}">{{day}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="time">Hour (military)</label>
+              <input type="number" name="hour" max="23" class="form-control" ng-model="backupConfig.hour" required>
+            </div>
+            <input
+              type="submit"
+              value="Save"
+              class="btn btn-primary"
+              ng-click="handleSubmit()"
+              ng-disabled="forms.backupConfigForm.$invalid || forms.backupConfigForm.$pristine">
+          </form>
+        </admincard>
+      </div>
+      <div class="col-md-4 admin-card-container">
+        <admincard subtitle="'Go to'"
+                   ctitle="'Themes'"
+                   icon="'glyphicon-tint'"
+                   color="'#ffcc5c'"
+                   external="true"
+                   href="'/#/themes'">
+          This is will take you to Themes,
+          which allows you to customize the look
+          and feel of the application.
+        </admincard>
+      </div>
+      <div class="col-md-4 admin-card-container">
+        <admincard subtitle="'Set'"
+                   ctitle="'Polr'"
+                   icon="'glyphicon-road'"
+                   color="'#83e5ce'">
+          <p>Here you can change the settings for getting the results of the commute-time filter.</p>
+          <form novalidate name="forms.polrConfigForm" style="padding: 10px;">
+            <div class="form-group">
+              <label for="archived">GOOGLE API KEY</label>
+              <input type="text" name="key" class="form-control" ng-model="polrConfig.googleApiKey" required>
+            </div>
+            <div class="form-group">
+              <label for="day">POLR DURATION MATCH TOLERANCE</label>
+              <input type="number" name="tolerance" class="form-control" step=0.01 ng-model="polrConfig.polrDurationMaxTolerance" required>
+            </div>
+            <div class="form-group">
+              <label for="time">ISOCHRONE SEARCH ANGLES</label>
+              <input type="number" name="angles" class="form-control" ng-model="polrConfig.polrSearchAngles" required>
+            </div>
+            <div class="form-group">
+              <label for="time">ISOCHRONE SEARCH ITERATIONS</label>
+              <input type="number" name="iterations" class="form-control" ng-model="polrConfig.polrSearchIterations" required>
+            </div>
+            <div class="form-group">
+              <label for="time">MAX ALLOWABLE MILES PER MINUTE</label>
+              <input type="number" name="max_mpm" min="0" class="form-control" step=0.01 ng-model="polrConfig.polrMaxMpm" required>
+            </div>
+            <div class="form-group">
+              <label for="time">MATRIX ELEMENTS PS</label>
+              <input type="number" name="min_mpm" min="0" class="form-control" step=0.01 ng-model="polrConfig.polrGoogleMatrixElementsPs" required>
+            </div>
+            <input
+              type="submit"
+              value="Save"
+              class="btn btn-primary"
+              ng-click="polrSubmit()"
+              ng-disabled="forms.polrConfigForm.$invalid || forms.polrConfigForm.$pristine">
+          </form>
+        </admincard>
+      </div>
+      <!--START link to property promotions page fernando:fserr010@fiu.edu-->
+      <div class="col-md-4 admin-card-container">
+        <admincard subtitle="'Control'"
+                   ctitle="'Properties preview'"
+                   icon="'glyphicon-picture'"
+                   color="'#DDBD67'"
+                   external="true"
+                   href="'/#/propertypromotions'">
+          here you can choose which properties are displayed and choose to hide/show the carousel.
+        </admincard>
+      </div>
+      <!--END link to property promotions page Fernando Serrano-->
+    </div>
+  </div>
+</div>

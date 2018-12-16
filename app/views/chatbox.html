@@ -1,0 +1,38 @@
+<div id="open-chat-box" ng-click="toggleChatBox()" ng-show="!isActive">
+  <i class="fa fa-comments" aria-hidden="true"></i>
+</div>
+<div id="chat-box" ng-show="isActive">
+  <div class="top-bar">
+    <i class="fa fa-times"
+      id="close-chatbox"
+      aria-hidden="true"
+      ng-click="toggleChatBox()">
+    </i>
+    Lobby
+  </div>
+  <div class="messages-container">
+    <div
+      class="message-box"
+      ng-repeat="message in messages"
+      ng-class="{'mine': user.email == message.user.email}"
+    >
+      <div class="image" ng-if="message.image">
+        <img ng-src="{{ message.image_url }}">
+      </div>
+      <span class="username">{{
+        user.email == message.user.email ? 'You' : message.user.username.split("@")[0]
+      }}</span>
+      {{ message.text }}
+      <span class="time">{{ message.inserted_at | dateWithTZ | date: "shortTime" }}</span>
+    </div>
+  </div>
+  <div class="form-container">
+    <form role="newMessage" ng-submit="newMessage()">
+      <input type="file" name="image" id="image" ngf-select ng-model="image" />
+      <label for="image" class="add-pic" ng-class="{'loaded': image}">
+        <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+      </label>
+      <input type="text" placeholder="Your message" ng-model="message" />  
+    </form>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+//START sortPropertiesbyAttributes:lcaba026@fiu.edu
+//_customizeSort.scss
+
+$brand-main: #006990;
+$brand-secondary: #d6db0f;
+//
+
+#listItems {
+  background-color: $brand-main;//#42758C
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+}
+
+#listItems .custom {
+  color: rgba(255,255,255,.9);; //color for text
+  font-size: 1.2em;
+  height: 50px;
+  position: relative;
+  cursor: pointer;
+  line-height: 45px;
+  border-top: 2px solid #3387a6;
+
+}
+#listItems .custom .customicons #check {
+  padding-left: 27px;
+  border: none;
+  margin-right: 18px;
+  margin-left: 30px;
+  line-height: 45px;
+  font-size: 14px;
+
+}
+
+#listItems .custom .customicons #fullName {
+  line-height: 49px;
+
+}
+
+//------------------------------------------
+button.close.fa-check{
+  margin-right: 8px;
+  padding: 3px;
+  //color: white;
+  font-size: 13px;
+
+}
+//--------------------------------------------
+//style for changing size of checkbox
+
+input[type="checkbox"],
+input[type="radio"] {
+  //box-sizing: border-box; // 1
+  //padding: 0; // 2
+  height: 15px;
+  width: 26px;
+}
+//---------------------------------------------
+.close {
+  color: white;
+  text-shadow: none;
+  @include opacity(.9);
+
+  &:hover,
+  &:focus {
+    color: white;
+    @include opacity(1);
+  }
+
+}
+
+//------------------------------------------
+#listItems .custom .customicons {
+  //display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+//------------------------------------------
+
+i#checkApply {
+  float:right;
+
+}
+
+//END sortPropertiesbyAttributes

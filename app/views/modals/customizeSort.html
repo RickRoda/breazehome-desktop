@@ -1,0 +1,26 @@
+<div id="custom-modal" >
+  <!-- START sortPropertiesbyAttributes:lcaba026@fiu.edu -->
+  <div id="overlay">
+    <button type="button" class="close" ng-click="closeCustomSort()" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <button type="button" class="close fa fa-check" ng-click="applyCustomSort()"  aria-hidden="true"></button>
+    <h5 class="sort-slogann">Customize sort.....</h5>
+    <div class="row">
+      <ul id="listItems" class="task">
+      <!--<ul ui-sortable="sortableOptions" ng-model="sortItems" id="list" class="task">-->
+
+        <li class="custom" ng-repeat="item in sortItems" ng-class="item.active?'checked':'unchecked'">
+          <div class="customicons">
+            <input id= "check" type="checkbox" id="checkbox" ng-model="item.checkbox_checked"  ng-disabled="(counter <= min && item.checkbox_checked)" ng-click="updateCounter()">
+            <span id="fullName">{{item.fullname}}</span>
+            </input>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="fade"></div>
+</div>
+
+<!-- END sortPropertiesbyAttributes -->
+
+

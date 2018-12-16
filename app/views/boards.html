@@ -1,0 +1,70 @@
+<!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+<breaze-header></breaze-header>
+
+<div class="boards-header" id="myHeader">
+	<h1>{{board.name}}</h1>
+</div>
+
+<div class="results">
+<div class="container-fluid results-wrapper" >
+		<!-- Results List -->
+		<div class="results-list-wrapper">
+			
+			<div class="results-list">
+			<div class="card-createboard-buttons col-md-3"  ng-click = "selectPropertyToBoard($event, board, board.name)"> 
+             				<button class="btn btn-primary btn-lg card-createboard-button"> <i class="glyphicon glyphicon-edit"> </i>  Edit board</button> 			
+      				 
+        				</div>
+				<div class="boards-header" id="myHeader">
+					<h1></h1>
+				</div>
+				
+        		<div>
+<!-- Photo Grid -->
+<div class="row">
+<div class="col-sm-16 col-md-12">
+
+						<!-- Name board Form -->
+						<div>
+
+							<!-- Card view -->
+							<div class="row" ng-class="{'hide': settings.listView === 'list'}">
+								<div>
+								<!--Board Card -->
+									<div ng-repeat="board in boards"  class="col-sm-6 col-md-4 animated fadeInUp" ng-mouseover="onCardsHover(board, $event)" ng-mouseleave="onCardsHoverOut($event)">
+
+		<div class="thumbnail card-wrapper">
+   		<a ng-click="clickProperty(board)" class="card-link"></a>
+                  					
+              <!-- Select property to be added to board -->
+                  	<i class="card-save glyphicon glyphicon-remove"  ng-click="deletePropBoard($event, board.id)" ></i> 
+                  			
+                  	<!-- Image -->
+                  	<div class="card-image" style="background-image: url(../images/temp_home_placeholder/home{{$index%14+1}}.jpeg)"></div>
+                    <div class="card-filter"></div>
+                  					
+                  	<!-- Caption -->
+                  	<div class="caption">
+                    <div class="card-top">
+                     <span class="card-details">{{board.addressInternetDisplay}}     {{board.city}}</span>
+                     </div>
+                     </div>
+                    </div>
+                   
+                 		
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+

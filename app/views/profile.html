@@ -1,0 +1,56 @@
+<!--#2427 Ronny Alfonso ralfo040@fiu.edu-->
+<breaze-header></breaze-header>
+<div class="detail-bg">
+    <div main-color class="detail-divider-dash"></div>
+    <div main-color class="detail-top" id="detail-top">
+        <div main-Color class="detail-nav" id="detail-nav">
+            <div class="detail-nav-menu">
+
+            </div>
+        </div>
+        <div class="row justify-content-lg-center">
+            <div class="row text-center">
+                <div class="detail-address">PROFILE</div>
+            </div>
+            <div class="row justify-content-lg-center">
+                <div class="col-md-3 offset-md-2">
+                    <img src="../images/detail/perry.png" class="img-responsive rounded">
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <h2 class="detail-address">{{fullname}}</h2>
+                    </div>
+                    <div class="">
+                        <input type="text" class="results-input" ng-model="firstName" placeholder="First name">
+                    </div>
+                    <div class="">
+                        <input type="text" class="results-input" ng-model="lastName" placeholder="Last name">
+                    </div>
+                    <div class="">
+                        <input type="text" class="results-input" ng-model="phone" placeholder="Phone">
+                    </div>
+                    <div class="dropdown landing-search-dropdown">
+                        <button main-Color accent-Color-Text class="landing-search-dropdown-btn btn btn-default dropdown-toggle" type="button" id="genderDropdown"
+                            data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                            <span id="genderId">Gender</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>Female</li>
+                            <li>Male</li>
+                        </ul>
+                    </div>
+                    <div class="detail-contact-message">
+                        <input type="text" class="results-input" ng-model="email" placeholder="Email">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <chatbox ng-if="lobbyChannel" user="user" channel="lobbyChannel" messages="lobbyMessages">
+    </chatbox>
+
+</div>
+<!--END #2427-->

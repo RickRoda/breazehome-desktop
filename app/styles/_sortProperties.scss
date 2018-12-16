@@ -1,0 +1,223 @@
+//START sortPropertiesbyAttributes:lcaba026@fiu.edu
+//_sort.scss
+
+$brand-main: #006990;
+$brand-secondary: #d6db0f;
+
+.sort{
+  &-slogann{
+    color: white;
+    font-size: 21px;
+    line-height: 30px;
+    margin-top:0;
+  }
+
+}
+
+#overlay {
+  position: fixed;
+  left: 25%;
+  top: 25%;
+  padding: 15px;
+  border: 0px solid;
+  background-color: $brand-main; //dark blue#13536f
+  width: 27%;
+  height: 9%;
+  z-index: 100000;
+
+}
+
+#fade {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  background-color: black;
+  -moz-opacity: 0.7;
+  opacity: .70;
+  filter: alpha(opacity=70);
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+}
+
+body.sort-custom-modal-open #fade {
+  background-color: lightslategray;
+  -moz-opacity: 0.9;
+  opacity: .90;
+  filter: alpha(opacity=90);
+}
+
+#custom-modal.ng-enter {
+  transition: opacity .5s ease-out;
+  opacity: 0;
+}
+#custom-modal.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+#custom-modal.ng-leave {
+  transition: opacity .5s ease-out;
+  opacity: 1;
+}
+#custom-modal.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+#list {
+  background-color: $brand-main;//#42758C
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+}
+
+#list li {
+  font-size: 1.2em;
+  position: relative;
+  cursor: pointer;
+}
+#list li#customize{
+  font-size: 1.2em;
+  height: 45px;
+  position: relative;
+  cursor: pointer;
+  line-height: 45px;
+
+}
+#list .plusIcon{
+  padding-left: 4px;
+  border: none;
+  margin-right: 24px;
+}
+#list .customName{
+  margin-right: 30px;
+}
+
+.test-seleted {
+  background: #3387a6;
+  color: $brand-secondary; //for text
+  border-top: 1px solid $brand-main;
+  border-bottom: 1px solid $brand-main;
+}
+.test-unseleted {
+  background:  $brand-main;//rgb(19,83,111)
+  color: rgba(255,255,255,.9);; //color for text
+  border-top: 1px solid #3387a6;
+  border-bottom: 1px solid #3387a6;
+  border-left: 1px solid $brand-main;
+  border-right: 1px solid $brand-main;
+}
+//------------------------------------------
+button.close.fa-check{
+  margin-right: 8px;
+  padding: 3px;
+  //color: white;
+  font-size: 13px;
+  line-height: 25px;
+
+}
+//---------------------------------------------
+.close {
+  color: white;
+  text-shadow: none;
+  line-height: 31px;
+  @include opacity(.9);
+
+  &:hover,
+  &:focus {
+    color: white;
+    @include opacity(1);
+  }
+
+}
+//-----------------------------------------
+#list li .icons i#check:after{
+  color: #3387a6;
+  border: none;
+
+}
+
+#list li .icons i#check.test-seleted {
+  color: $brand-secondary;
+}
+#list li .icons i#check.test-unseleted {
+  visibility: hidden;
+}
+
+.fa-check:before{
+  display: inline-block;
+}
+//------------------------------------------
+#list li .icons span{
+  color: rgba(255,255,255,.6);
+  border: none;
+}
+
+#list li .icons span.test-seleted {
+  color: white;
+}
+
+.glyphicon-arrow-up{
+  display: inline-block;
+  font-size: 14px;
+}
+//------------------------------------------
+#list li .icons {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+#list li .icons a {
+  padding: 16px;
+  margin-left: auto;
+  border: none;
+}
+
+#list li .icons .glyphicon-arrow-up {
+  padding-right: 16px;
+  margin-left: 20px;
+}
+
+#list li .icons #check {
+  padding-left: 27px;
+  border: none;
+  margin-right: 24px;
+}
+//------------------------------------------
+#list li .icons a#high i#refresh{
+  color: rgba(255,255,255,.6);
+  border: none;
+}
+#list li .icons a#high i#refresh.test-seleted {
+  color: white;
+}
+.glyphicon-refresh{
+  display: inline-block;
+  font-size: 11px;
+}
+//------------------------------------------
+#list li .icons a#high span#hl{
+  color: rgba(255,255,255,.6);
+  font-size: 13px;
+  border:none;
+}
+#list li .icons a#high span#hl.test-seleted {
+  color: white;
+}
+#list li .icons a#high span#lh{
+  color: rgba(255,255,255,.6);
+  font-size: 13px;
+  border:none;
+}
+
+#list li .icons a#high span#lh.test-seleted {
+  color: white;
+}
+
+i#checkApply {
+  float:right;
+
+}
+
+//END sortPropertiesbyAttributes

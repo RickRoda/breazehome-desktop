@@ -1,0 +1,21 @@
+/* START Fernando Serrano:fserr010@fiu.edu */
+
+$brand-main: #006990;
+$brand-secondary: #d6db0f;
+
+.createCustomFilter{
+  &-overlay {
+    position: fixed;
+    left: 25%;
+    top: 25%;
+    padding: 15px;
+    border: 0px solid;
+    background-color: $brand-main; //dark blue#13536f
+    width: 27%;
+    height: 9%;
+    z-index: 100000;
+  }
+
+}
+
+/* END Fernando Serrano */

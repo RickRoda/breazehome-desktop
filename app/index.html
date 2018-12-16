@@ -1,0 +1,166 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="google-site-verification" content="qaKiU5ZhjRe94bVMUFdeVtDwH6xMiQMCj0Rh-JsiAg8">
+    <title>BreazeHome</title>
+	  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Eczar|Nunito" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/leaflet-draw/dist/leaflet.draw.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
+    <link rel="stylesheet" href="bower_components/allmighty-autocomplete/style/autocomplete.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- endbuild -->
+    <link rel="stylesheet" href="styles/fa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/animate.css">
+    <link rel="stylesheet" href="./bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
+    <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Chango|Clicker+Script|Droid+Sans|Devonshire|Eater|Fruktur|Griffy|Stalemate" rel="stylesheet">
+    <link rel="stylesheet" href="styles/fa/css/breazehomeicon.css">
+    <base href="/">
+  </head>
+  <body ng-app="breazehomeDesktop">
+
+    <!-- Views get inserted here -->
+    <div class="">
+      <div ng-view=""></div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast-wrapper">
+      <div class="toast-icon"><i class="glyphicon glyphicon-star"></i></div>
+      <div class="toast-content"></div>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <script type="text/javascript" src="settings.js"></script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/leaflet-draw/dist/leaflet.draw.js"></script>
+    <script src="bower_components/leaflet-polylinedecorator/leaflet.polylineDecorator.js"></script>
+    <script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
+    <script src="bower_components/image-viewer/ImageViewer.js"></script>
+    <script src="bower_components/allmighty-autocomplete/script/autocomplete.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="bower_components/angular-slick/dist/slick.js"></script>
+    <script src="bower_components/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2012-2022.js"></script>
+    <script src="bower_components/js-timezone-detect/jstz-1.0.4.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="scripts/lib/phoenix.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <!-- START #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+    <script src="scripts/controllers/addtoboard.js"></script>
+    <script src="scripts/controllers/boards.js"></script>
+    <script src="scripts/controllers/allboards.js"></script>
+    <script src="scripts/controllers/resultsfav.js"></script>
+    <script src="scripts/controllers/propstoboard.js"></script>
+    <!-- END #2357 and #2487 Andreina Rojas aroja108@fiu.edu -->
+    <script src="scripts/controllers/files.js"></script>
+
+    <!-- #2427, #2490, #2491 Ronny Alfonso ralfo040@fiu.edu-->
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/services/questions.js"></script>
+    <script src="scripts/controllers/landing.js"></script>
+    <!-- END #2427, #2490, #2491 -->
+
+    <script src="scripts/controllers/test.js"></script>
+    <script src="scripts/services/services.js"></script>
+    <script src="scripts/services/amenities.js"></script>
+    <script src="scripts/services/bilingual.js"></script>
+    <script src="scripts/controllers/themes.js"></script>
+    <script src="scripts/controllers/results.js"></script>
+    <script src="scripts/controllers/lists.js"></script>
+    <script src="scripts/services/properties.js"></script>
+    <script src="scripts/controllers/detail.js"></script>
+    <script src="scripts/services/users.js"></script>
+    <script src="scripts/services/map.js"></script>
+    <script src="scripts/controllers/oauth.js"></script>
+    <script src="scripts/services/oauth.js"></script>
+    <script src="scripts/controllers/passwordreset.js"></script>
+    <script src="scripts/services/lists.js"></script>
+    <script src="scripts/services/toasts.js"></script>
+    <script src="scripts/services/tags.js"></script>
+    <script src="scripts/controllers/forgotpassword.js"></script>
+    <script src="scripts/services/history.js"></script>
+    <script src="scripts/services/themes.js"></script>
+    <script src="scripts/controllers/sharePropertyDialogCtrl.js"></script>
+    <script src="scripts/services/chat.js"></script>
+    <script src="scripts/controllers/customizetheme.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <script src="scripts/controllers/sortProperties.js"></script>  <!-- sortProperies controller inserted-->
+    <script src="scripts/services/backup.js"></script>
+    <script src="scripts/controllers/propertyPromotions.js"></script>
+    <script src="scripts/controllers/propertyPreview.js"></script>
+    <script src="scripts/controllers/createCustomFilters.js"></script>
+
+
+    <!-- Derictives -->
+    <script src="scripts/directives/themes.js"></script>
+    <script src="scripts/directives/rangeSelector.js"></script>
+    <script src="scripts/directives/adminCard.js"></script>
+    <script src="scripts/directives/chatbox.js"></script>
+
+    <!-- Derictives -->
+    <script src="scripts/filters/datewithtz.js"></script>
+    <!-- <script type="text/javascript" src="scripts/addressit/bundle.js"></script>  -->
+    <script src="scripts/directives/breaze-header.js"></script>
+    <script src="scripts/services/admin.js"></script>
+    <!-- endbuild -->
+
+    <!-- <script src="node_modules/alpha-shape/alpha.js"></script> -->
+
+</body>
+</html>

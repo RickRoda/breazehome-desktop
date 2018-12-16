@@ -1,0 +1,704 @@
+<breaze-header></breaze-header>
+<div class="detail-bg">
+  <div main-color class="detail-divider-dash"></div>
+  <div main-color class="detail-top" id="detail-top">
+    <div main-Color class="detail-nav" id="detail-nav">
+      <span class="detail-nav-left" ng-click="prevShortcut()">
+        <i class="glyphicon glyphicon-menu-left"></i>
+        <span>{{storage.language.content.detailsPage.prevProperty}}</span>
+      </span>
+      <div class="detail-nav-menu">
+        <div class="detail-nav-functions">
+          <div class="detail-nav-icon glyphicon glyphicon-th" ng-click="exitDetail()">
+            <span class="detail-nav-icon-tooltiptext">{{storage.language.content.detailsPage.backOverview}}</span>
+          </div>
+          <div class="detail-nav-icon fa fa-share-alt" ng-click="showSharingDialog()">
+            <span class="detail-nav-icon-tooltiptext">{{storage.language.content.detailsPage.propertyShare}}</span>
+          </div>
+          <div class="detail-nav-icon glyphicon glyphicon-star-empty" ng-click>
+            <span class="detail-nav-icon-tooltiptext">{{storage.language.content.detailsPage.favoriteAdd}}</span>
+          </div>
+          <div class="detail-nav-icon fa fa-hashtag" ng-click>
+            <span class="detail-nav-icon-tooltiptext">{{storage.language.content.detailsPage.tagAdd}}</span>
+          </div>
+        </div>
+        <div class="detail-nav-shortcuts">
+          <a ng-click id="photoBtn">{{storage.language.content.detailsPage.photos}}({{imagesNum}})</a>
+          <a ng-click id="factsBtn">{{storage.language.content.detailsPage.facts}}</a>
+          <a ng-click id="pricingBtn">{{storage.language.content.detailsPage.pricing}}</a>
+          <a ng-click id="neighborBtn">{{storage.language.content.detailsPage.neighborhood}}</a>
+          <a ng-click id="amenityBtn">{{storage.language.content.detailsPage.amenities}}</a>
+          <a ng-click id="investBtn">{{storage.language.content.detailsPage.invest}}</a>
+          <a ng-click id="ContactBtn">{{storage.language.content.detailsPage.contact}}</a>
+          <a ng-click id="similarBtn">{{storage.language.content.detailsPage.similarProperties}}</a>
+        </div>
+      </div>
+      <span class="detail-nav-right" ng-click="nextShortcut()">
+        {{storage.language.content.detailsPage.nextProperty}}
+        <i class="glyphicon glyphicon-menu-right"></i>
+      </span>
+    </div>
+    <hr main-color class="detail-divider-line" />
+    <div class="detail-address">{{property.addressInternetDisplay || 'ADDRESS'}}, {{property.city}} {{property.stateOrProvince}}, {{property.postalCode}}</div>
+    <div class="detail-info-basic">
+      <span>{{property.currentPrice | currency:"$":0}}</span> .
+      <span>{{property.bedsTotal || '-'}} {{storage.language.content.detailsPage.bedAbbrev}}</span> .
+      <span>{{property.bathsFull || '-'}} {{storage.language.content.detailsPage.bathAbbrev}}</span> .
+      <span>{{property.propertyType || '-'}}</span> .
+      <span>{{property.sqFtTotal || '-'}} {{storage.language.content.detailsPage.feetAbbrev}}<sup>2</sup></span> .
+      <span>{{storage.language.content.detailsPage.since}} {{property.yearBuilt || '-'}}</span>
+    </div>
+    <div class="detail-info-basic">
+
+<!-- START View Competition for Properties : adubu002@fiu.edu -->
+      <span>Total Views: {{viewCount.totalCount}} &nbsp &nbsp &nbsp Weekly Views: {{viewCount.weeklyCount}}</span>
+<!--END View Compeition for Properties -->
+
+    </div>
+    <div id="photos" class="detail-gallery">
+      <div class="detail-gallery-unselected-left">
+        <div class="detail-image-unselected detail-image-unselected-left" ng-repeat="image in leftImages" style="background-image: url({{imageURL+image.path}})" ng-click="changeImage(image)"></div>
+      </div>
+      <div class="detail-gallery-unselected-right">
+        <div class="detail-image-unselected detail-image-unselected-right" ng-repeat="image in rightImages" style="background-image: url({{imageURL+image.path}})" ng-click="changeImage(image)"></div>
+      </div>
+      <div class="detail-image">
+        <div id="mainImage" class="detail-image-content" ng-hide="nullImage">
+          <i class="detail-image-expand glyphicon glyphicon-resize-full" ng-click="expandGallery(currentImageURL)"></i>
+        </div>
+        <div id="map-holder" class="detail-image-content" style="z-index: 500" ng-show="nullImage">
+          <!-- Niuriset: style added to prevent map going over top bar-->
+        </div>
+      </div>
+    </div>
+    <div class="detail-info-secondary col-md-10 row">
+      <div id="mini-map" class="detail-map-location col-md-6" ng-hide="nullImage"></div>
+      <img src="../images/detail/nopic.png" class="detail-map-location col-md-6" ng-show="nullImage">
+      <div additional-Color class="detail-contact col-md-2">
+        <div class="detail-contact-title">{{storage.language.content.detailsPage.contactAgent}}</div>
+        <div class="detail-contact-agent">
+          <div class="detail-contact-avatar col-md-1"></div>
+          <div class="detail-contact-name col-md-1">Maria Jimenez</div>
+        </div>
+        <div class="detail-contact-phone">
+          <span class="detail-contact-phone-icon glyphicon glyphicon-phone"></span> (786)332-7042
+        </div>
+        <div class="detail-contact-message" ng-click>
+          <span class="detail-contact-message-icon glyphicon glyphicon-envelope"></span> {{storage.language.content.detailsPage.sendMessage}}
+        </div>
+      </div>
+      <div additional-Color class="detail-mortgage col-md-2">
+        <div class="detail-mortgage-title">{{storage.language.content.detailsPage.mortgageCalc}}</div>
+        <div class="detail-mortgage-rate">{{(((property.currentPrice*0.80)*(mortgage)).toFixed(2))}}/mo</div>
+        <div class="detail-mortgage-calc">
+          <span class="detail-mortgage-calc-icon glyphicon glyphicon-calendar"></span> {{storage.language.content.detailsPage.adjustDetails}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-content" has-bouncing="true">
+    <div class="detail-section col-md-10" id="facts">
+      <div class="detail-section-title">Facts<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <div class="detail-facts-data row">
+        <div class="detail-facts-data-tag col-xs-4 col-sm-2 col-md-2">
+          <div main-Color class="detail-facts-data-tag-left">
+            <i class="detail-facts-data-icon fa fa-bed"></i>
+            <div class="detail-facts-data-tag-text">Bed</div>
+          </div>
+          <span additional-Color class="detail-facts-data-tag-right">
+            {{property.bedsTotal || '-'}}
+          </span>
+        </div>
+        <div class="detail-facts-data-tag col-xs-4 col-sm-2 col-md-2">
+          <div main-Color class="detail-facts-data-tag-left">
+            <i class="detail-facts-data-icon fa fa-bath"></i>
+            <div class="detail-facts-data-tag-text">Full bath</div>
+          </div>
+          <span additional-Color class="detail-facts-data-tag-right">
+            {{property.bathsFull || '-'}}
+          </span>
+        </div>
+        <div class="detail-facts-data-tag col-xs-4 col-sm-2 col-md-2">
+          <div main-Color class="detail-facts-data-tag-left">
+            <i class="detail-facts-data-icon fa fa-bath"></i>
+            <div class="detail-facts-data-tag-text">Half Bath</div>
+          </div>
+          <span additional-Color class="detail-facts-data-tag-right">
+            {{property.bathsHalf || '-'}}
+          </span>
+        </div>
+        <div class="detail-facts-data-tag col-xs-4 col-sm-2 col-md-2">
+          <div main-Color class="detail-facts-data-tag-left">
+            <i class="detail-facts-data-icon fa fa-expand"></i>
+            <div class="detail-facts-data-tag-text">Size</div>
+          </div>
+          <span additional-Color class="detail-facts-data-tag-right">
+            {{property.sqFtTotal || '-'}}
+          </span>
+        </div>
+        <div class="detail-facts-data-tag col-xs-4 col-sm-2 col-md-2">
+          <div main-Color class="detail-facts-data-tag-left">
+            <i class="detail-facts-data-tag-icon fa fa-cubes"></i>
+            <div class="detail-facts-data-tag-text">Floor</div>
+          </div>
+          <span additional-Color class="detail-facts-data-tag-right">
+            {{property.bedsTotal || '-'}}
+          </span>
+        </div>
+        <div class="detail-facts-data-tag col-xs-4 col-sm-2 col-md-2">
+          <div main-Color class="detail-facts-data-tag-left">
+            <i class="detail-facts-data-icon fa fa-calendar"></i>
+            <div class="detail-facts-data-tag-text">Yr built</div>
+          </div>
+          <span additional-Color class="detail-facts-data-tag-right">
+            {{property.yearBuilt || '-'}}
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-9 col-md-8">
+          <p class="detail-facts-description">FOR SALE BEAUTIFUL HOME WITH 2 LARGE BEDROOMS AND 2 BATHS, LIVING ROOM AND 2 KITCHENS .WITH A LARGE STORAGE UNIT.ONLY CASH. OWNER USER ONLY , ASSOCIATION NOT PERMIT IT AS RENTAL INVESTMENT PROPERTY.</p>
+          <p class="detail-facts-more" ng-click>read more ...</p>
+        </div>
+        <div class="col-xs-3 col-md-4">
+          <div class="detail-facts-side">
+            <div class="detail-facts-side-value">0.37ac</div>
+            <div class="detail-facts-side-key">lot</div>
+          </div>
+          <div class="detail-facts-side">
+            <div class="detail-facts-side-value">A10125451</div>
+            <div class="detail-facts-side-key">MLS ID</div>
+          </div>
+          <div class="detail-facts-side">
+            <div class="detail-facts-side-value">More info</div>
+            <div class="detail-facts-side-key">if needed</div>
+          </div>
+          <div class="detail-facts-side">
+            <div class="detail-facts-side-value">12 days</div>
+            <div class="detail-facts-side-key">online</div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-section-subtitle">Amenities & Details</div>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Pool</span>
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Parking garage</span>
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Patio</span>
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Gym</span>
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Pets OK</span>
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Concierge</span>
+          <span class="detail-facts-feature"><i class="detail-facts-feature-icon fa fa-check"></i> Washer/Dryer in Bldg</span>
+        </div>
+      </div>
+      <div class="detail-facts-subsection">
+        <p class="detail-facts-more" ng-click>and further ...</p>
+        <p>Ocean views · Belew Ground Media · Recreation Room · Formal Dining Room · Central AC · Electric Heat · Dishwasher · Microwave · Electric Stove · Refigerator · Eat-in Kitchen · Wall Oven · Double Sink Bathroom · Hardwood Floor · Bidet · Mater Ensuite
+          with Separate Shower</p>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="detail-facts-check" ng-click> Check phone / internet providers <i class="fa fa-arrow-right"> </i></span>
+          <span class="detail-facts-check" ng-click> Check utility providers <i class="fa fa-arrow-right"> </i></span>
+          <span class="detail-facts-check" ng-click> Check cable providers <i class="fa fa-arrow-right"> </i></span>
+        </div>
+      </div>
+    </div>
+    <hr width="80%" />
+    <!--  Ashif, Openhouse  -->
+    <div class="detail-section col-md-10" ng-if="property.basicInfo.openHouseUpcoming && property.basicInfo.openHouseUpcoming.startsWith('Public')">
+      <div class="detail-section-title">Openhouse<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <br>
+      Type : {{property.basicInfo.openHouseUpcoming.split(":")[0]}}<br>
+      Date : {{property.basicInfo.openHouseUpcoming.split(":")[1].split(",")[0]}}<br>
+      Time : {{property.basicInfo.openHouseUpcoming.split(",")[1]}}<br>
+      <!-- <img width="100%" src="../images/detail/pricing-placeholder.png"> -->
+      <br>
+      <p class="detail-facts-more" ng-click>Load more openhouses...</p>
+      <hr width="80%" />
+    </div>
+    <!-- End of Ashif, Openhouse  -->
+
+  <div class="detail-section col-md-10" id="pricing">
+      <div class="detail-section-title">Pricing<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <div class="detail-pricing-tag-row row">
+        <div class="detail-pricing-tag col-sm-6 col-md-3">
+          $<span class="detail-pricing-tag-value">{{property.currentPrice | currency:"":0}}</span> <span class="detail-pricing-tag-unit">total</span>
+        </div>
+        <div class="detail-pricing-tag col-sm-6 col-md-3">
+          $<span class="detail-pricing-tag-value">{{(property.currentPrice/property.approxSqftTotalArea).toFixed(2)}}</span> <span class="detail-pricing-tag-unit">/sqft</span>
+        </div>
+        <div class="detail-pricing-tag col-sm-6 col-md-3">
+          $<span class="detail-pricing-tag-value">{{property.taxAmount | currency:"":0}}</span> <span class="detail-pricing-tag-unit">taxes/year</span>
+        </div>
+        <div class="detail-pricing-tag col-sm-6 col-md-3">
+          $<span class="detail-pricing-tag-value">{{(property.associationFee | currency:"":0) || 0 }}</span> <span class="detail-pricing-tag-unit">HOA fees/year</span>
+        </div>
+        <div class="detail-pricing-tag col-sm-6 col-md-3">
+           $<span class="detail-pricing-tag-value">{{property.currentPrice | currency:"":0}}</span> <span class="detail-pricing-tag-unit">total</span>
+        </div>
+      </div>
+      <div class="detail-section-subtitle">Calculate mortgage</div>
+      <div class="row">
+        <div class="detail-pricing-tag col-md-3">
+            $<span class="detail-pricing-tag-value">{{(((property.currentPrice*0.80)*(mortgage)).toFixed(2))}}</span> <span class="detail-pricing-tag-unit">/mo</span>
+        </div>
+      </div>
+      <div class="detail-pricing-mortgage"><span class="detail-pricing-mortgage-highlight">20%</span> Down Payment / <span class="detail-pricing-mortgage-highlight">3.83%</span> Interest Rate / <span class="detail-pricing-mortgage-highlight">30 year fixed</span> Loan Type</div>
+      <span class="detail-pricing-adjust" ng-click> Adjust this<i class="fa fa-arrow-right"> </i></span>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="detail-section-subtitle" id="chartHeader">Price Comparison</div>
+          <div id = "charts">
+          <canvas id = "graph" style = "margin: 5%;"></canvas>
+        </div>
+          <!--<canvas id="priceChart" class="chart chart-bar" chart-data="data1" chart-labels="labels1" chart-series="series2"chart-options = "options">
+          </canvas>-->
+          <span class="detail-pricing-adjust" onclick="changeChart()" ng-click="changeChart()" id="chartButton">Compare total price</span>
+          <!--<button onclick="changeChart()">Please</button>-->
+        </div>
+        <div class="col-md-6">
+          <div class="detail-section-subtitle">Price History</div>
+          <canvas id = "graph2" style = "margin: 5%;"></canvas>
+          <span class="detail-pricing-adjust" ng-click> Customize comparison <i class="fa fa-arrow-right"> </i></span>
+          <span class="detail-pricing-adjust" ng-click> See comparison map <i class="fa fa-arrow-right"> </i></span>
+        </div>
+      </div>
+      <!-- <img width="100%" src="../images/detail/pricing-placeholder.png"> -->
+    </div>
+
+    <hr width="80%" />
+    <!--  Ashif, Openhouse  -->
+     <div class="detail-section col-md-10" ng-if="property.openHouseUpcoming && property.openHouseUpcoming.startsWith('Public')">
+      <div class="detail-section-title">Openhouse<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <br>
+      Type : {{property.openHouseUpcoming.split(":")[0]}}<br>
+      Date : {{property.openHouseUpcoming.split(":")[1].split(",")[0]}}<br>
+      Time : {{property.openHouseUpcoming.split(",")[1]}}<br>
+      <!-- <img width="100%" src="../images/detail/pricing-placeholder.png"> -->
+      <br>
+      <p class="detail-facts-more" ng-click>Load more openhouses...</p>
+     </div>
+    <hr width="80%" />
+    <!-- End of Ashif, Openhouse  -->
+    <div class="detail-section col-md-10" id="neighborhood">
+      <div class="detail-section-title">Neighborhood details<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <div class="detail-neighbor row">
+        <div class="detail-neighbor-menu col-md-3 nopadding">
+          <div class="panel-group" id="accordion">
+            <div class="panel detail-neighbor-panel" ng-repeat="neighborType in neighborhoodTypes track by $index">
+              <div data-toggle="collapse" data-parent="#accordion" data-target="#neighbor-{{$index}}" ng-click="neighborClick(neighborType.id)"><i class="fa fa-angle-right"></i> {{neighborType.text}}</div>
+              <div id="neighbor-{{$index}}" class="detail-neighbor-panel-content panel-collapse collapse">
+                <ul class="panel-body detail-neighbor-tableul" >
+                  <li ng-repeat="neighborhood in neighborhoods" class="detail-neighbor-menu-item" ng-click><span class="detail-neighbor-menu-item-serial">{{neighborhood.index}}</span>
+                  {{neighborhood.institutionName}}
+                  <p class="detail-neighbor-menu-item-info">{{neighborhood.distance}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- START Add Schools to Details Page Map:amoha083@fiu.edu -->
+            <!--School Tab-->
+            <div class="panel detail-neighbor-panel">
+              <div data-toggle="collapse" data-parent="#accordion" data-target="#neighborSchool" ng-click><i class="fa fa-angle-right"></i> School</div>
+              <div id="neighborSchool" class="detail-neighbor-panel-content panel-collapse collapse">
+                <ul class="panel-body">
+                    <div style="clear: both; text-align: center;" class="detail-neighbor-menu-item-info">
+                      <button type="button" class="btn btn-primary" ng-click="showSchoolOnMap()">
+                       <span class="glyphicon glyphicon-eye-open"></span>
+                       Show
+                       </button>
+                      <button type="button" class="btn btn-warning" ng-click="hideSchoolOnMap()">
+                       <span class="glyphicon glyphicon-eye-close"></span>
+                       Hide
+                       </button>
+                    </div>
+                </ul>
+              </div>
+            </div>
+            <!-- END Add Schools to Details Page Map:amoha083@fiu.edu -->
+
+            <!-- Brandon Cajigas Neighborhood Indexes: Transportation Tab bcaji001@fiu.edu-->
+            <div class="panel detail-neighbor-panel">
+                <div data-toggle="collapse" data-parent="#accordion" data-target="#neighborTransport" ng-click><i class="fa fa-angle-right"></i> Public Transportation</div>
+                <div id="neighborTransport" class="detail-neighbor-panel-content panel-collapse collapse">
+                  <ul class="panel-body">
+                    <!-- radius bar and the show and hide button for public transportation -->
+                      <div>
+                        <div>
+                          Radius: {{radiusTransport}} miles
+                          <input type="range" name="radius" ng-model="radiusTransport" min="{{radiusTransportMin}}" max="{{radiusTransportMax}}" step="{{stepRadiusTransport}}">
+                        </div>
+                        <div>
+                          <p style="float: left;">
+                            {{radiusTransportMin}}
+                          </p>
+                          <p style="float: right;">
+                            {{radiusTransportMax}}
+                          </p>
+                        </div>
+                      </div>
+                      <div style="clear: both; text-align: center;" class="detail-neighbor-menu-item-info">
+                        <button type="button" class="btn btn-primary" ng-click="showTransportOnMap(radiusTransport)">
+                         <span class="glyphicon glyphicon-eye-open"></span>
+                         Show
+                         </button>
+                        <button type="button" class="btn btn-warning" ng-click="clearFeaturesOnMap()">
+                         <span class="glyphicon glyphicon-eye-close"></span>
+                         Hide
+                         </button>
+                      </div>
+                  </ul>
+                </div>
+              </div>
+
+            <!-- Neighborhood Indexes: Crime Tab -->
+            <div class="panel detail-neighbor-panel">
+              <div data-toggle="collapse" data-parent="#accordion" data-target="#neighborCrime" ng-click><i class="fa fa-angle-right"></i> Crime</div>
+              <div id="neighborCrime" class="detail-neighbor-panel-content panel-collapse collapse">
+                <ul class="panel-body">
+                  <!-- Neighborhood Indexes: Crime Index -->
+                  <li class="detail-neighbor-menu-item" ng-click><span class="detail-neighbor-menu-item-rating">Rating</span> {{property.city}}, {{property.stateOrProvince}}
+                    <p class="detail-neighbor-menu-item-info">Crime Rating is <span ng-class="{'detail-neighbor-menu-item-low': crimeRating == 'Low','detail-neighbor-menu-item-medium': crimeRating == 'Medium','detail-neighbor-menu-item-high': crimeRating == 'High'}">{{crimeRating}}</span></p>
+                    <!-- this does the radius bar and the show and hide button for crime -->
+                    <div>
+                      <div>
+                        Radius: {{radiusCrime}} miles
+                        <input type="range" name="radius" ng-model="radiusCrime" min="{{radiusCrimeMin}}" max="{{radiusCrimeMax}}" step="{{stepRadiusCrime}}">
+                      </div>
+                      <div>
+                        <p style="float: left;">
+                          {{radiusCrimeMin}}
+                        </p>
+                        <p style="float: right;">
+                          {{radiusCrimeMax}}
+                        </p>
+                      </div>
+                    </div>
+                    <div style="clear: both; text-align: center;" class="detail-neighbor-menu-item-info">
+                      <button type="button" class="btn btn-primary" ng-click="showCrimesOnMap(radiusCrime)">
+                       <span class="glyphicon glyphicon-eye-open"></span>
+                       Show
+                       </button>
+                      <button type="button" class="btn btn-warning" ng-click="hideCrimesOnMap()">
+                       <span class="glyphicon glyphicon-eye-close"></span>
+                       Hide
+                       </button>
+                    </div>
+                    <!-- End this does the radius bar and the show and hide button for crime -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Neighborhood Indexes: Hazards Tab -->
+            <div class="panel detail-neighbor-panel">
+              <div data-toggle="collapse" data-parent="#accordion" data-target="#neighborHazards" ng-click><i class="fa fa-angle-right"></i> Hazards</div>
+              <div id="neighborHazards" class="detail-neighbor-panel-content panel-collapse collapse">
+                <ul class="panel-body">
+                  <!-- Neighborhood Indexes: Flood Index -->
+                  <li class="detail-neighbor-menu-item" ng-click><span class="detail-neighbor-menu-item-rating">Rating</span> {{property.city}}, {{property.stateOrProvince}}
+                    <p class="detail-neighbor-menu-item-info">Flood Rating is <span ng-class="{'detail-neighbor-menu-item-low': floodRating == 'Low','detail-neighbor-menu-item-medium': floodRating == 'Medium','detail-neighbor-menu-item-high': floodRating == 'High'}">{{floodRating}}</span></p>
+                    <div style="clear: both; text-align: center;" class="detail-neighbor-menu-item-info">
+                      <button type="button" class="btn btn-primary" ng-click="showFloodsOnMap()">
+                       <span class="glyphicon glyphicon-eye-open"></span>
+                       Show
+                       </button>
+                      <button type="button" class="btn btn-warning" ng-click="hideFloodsOnMap()">
+                       <span class="glyphicon glyphicon-eye-close"></span>
+                       Hide
+                       </button>
+                    </div>
+                  </li>
+                  <!-- Neighborhood Indexes: Hurricane Index -->
+                  <li class="detail-neighbor-menu-item" ng-click><span class="detail-neighbor-menu-item-rating">Rating</span> {{property.city}}, {{property.stateOrProvince}}
+                    <p class="detail-neighbor-menu-item-info">Hurricane Rating is <span ng-class="{'detail-neighbor-menu-item-low': hurricaneRating == 'Low','detail-neighbor-menu-item-medium': hurricaneRating == 'Medium','detail-neighbor-menu-item-high': hurricaneRating == 'High'}">{{hurricaneRating}}</span></p>
+                    <div style="clear: both; text-align: center;" class="detail-neighbor-menu-item-info">
+                      <button type="button" class="btn btn-primary" ng-click="showHurricanesOnMap()">
+                       <span class="glyphicon glyphicon-eye-open"></span>
+                       Show
+                       </button>
+                      <button type="button" class="btn btn-warning" ng-click="hideHurricanesOnMap()">
+                       <span class="glyphicon glyphicon-eye-close"></span>
+                       Hide
+                       </button>
+                    </div>
+                  </li>
+                  <!-- Neighborhood Indexes: Wildfire Index -->
+                  <li class="detail-neighbor-menu-item" ng-click><span class="detail-neighbor-menu-item-rating">Rating</span> {{property.city}}, {{property.stateOrProvince}}
+                    <p class="detail-neighbor-menu-item-info">Wildfire Rating is <span ng-class="{'detail-neighbor-menu-item-low': wildfireRating == 'Low','detail-neighbor-menu-item-medium': wildfireRating == 'Medium','detail-neighbor-menu-item-high': wildfireRating == 'High'}">{{wildfireRating}}</span></p>
+                    <div style="clear: both; text-align: center;" class="detail-neighbor-menu-item-info">
+                      <button type="button" class="btn btn-primary" ng-click="showWildfiresOnMap()">
+                       <span class="glyphicon glyphicon-eye-open"></span>
+                       Show
+                       </button>
+                      <button type="button" class="btn btn-warning" ng-click="hideWildfiresOnMap()">
+                       <span class="glyphicon glyphicon-eye-close"></span>
+                       Hide
+                       </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 nopadding detail-neighbor-map">
+          <!-- <img width="100%" src="../images/detail/neighborhood-placeholder.png"> -->
+          <div id="map-neighbor" width="100%"  class="detail-neighbor-map"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richard Roda -->
+    <!-- Email: rroda001@fiu.edu -->
+    <!-- Lien Search Feature -->
+    <!-- The following HTML will perform the following: -->
+    <!-- If there are lien lists for the currently listed property, show a table with the results. -->
+    <!-- If there are no liens on the property, hide table template and notify user -->
+    <hr width="80%" />
+    <div class="detail-section col-md-10" id="invest">
+      <div class="detail-section-title">{{storage.language.content.detailsPage.investinfo}}<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <br></br>
+      <div class="detail-invest-section row">
+          <table class="detail-invest-table col md-8" ng-if="lienList[0]">
+              <th class="detail-invest-table-header">{{storage.language.content.detailsPage.doctype}}</th>
+              <th class="detail-invest-table-header">{{storage.language.content.detailsPage.datefiled}}</th>
+              <th class="detail-invest-table-header">{{storage.language.content.detailsPage.cfnnumber}}</th>
+              <th class="detail-invest-table-header">{{storage.language.content.detailsPage.firstparty}}</th>
+              <th class="detail-invest-table-header">{{storage.language.content.detailsPage.crossparty}}</th>
+            </tr>
+            <tr ng-repeat= "lien in lienList">
+              <td>{{lien.documentTypeDescription}}</td>
+              <td>{{lien.recordingDate.substring(0,2)}}/{{lien.recordingDate.substring(2,4)}}/{{lien.recordingDate.substring(4,8)}}</td>
+              <td>{{lien.cfnSequence}}</td>
+              <td>{{lien.firstParty}}</td>
+              <td>{{lien.crossPartyName}}</td>
+            </tr>
+          </table>
+          <div class ="detail-section" style="text-align: center" ng-if = "!lienList[0]" >{{storage.language.content.detailsPage.noliensfound}}</div>
+      </div>
+    </div>
+<!--End of Richard Roda's Lien Search Feature Implementation -->
+
+
+
+    <hr width="80%" />
+
+    <!-- START Neighborhood Amenities : adubu002@fiu.edu-->
+    <div class="detail-section col-md-10" id="amenities">
+      <div class="detail-section-title">Neighborhood Amenities<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <div class="detail-neighbor row neighborhoodAmenity">
+        <div class="detail-neighbor-menu col-md-3 padding">
+          <div class="amenity-panel left" id="accordion2">
+            <div class="panel detail-neighbor-panel" ng-repeat="amenityType in amenityTypes track by $index">
+              <div data-toggle="collapse" data-parent="#accordion2" id="#amenityType-{{$index}}" data-target="#amenityType-{{$index}}" ng-click="amenityClick(amenityType.alias)"><i class="fa fa-angle-right"></i> {{amenityType.title}}</div>
+              <div id="amenityType-{{$index}}" class="detail-neighbor-panel-content panel-collapse collapse">
+                <ul id="amenityList-{{$index}}" ng-if="amenityCat == amenityType.alias" class="panel-body detail-neighbor-tableul amenity-ul" >
+                  <li name="amenity" ng-class = "{'detail-amenityToggle' : amenity.check}" id="amen-{{$index}}" ng-repeat="amenity in amenities track by $index" class="detail-neighbor-menu-item amenity-li" ng-click="amenityHighlight(amenity)">
+                    <span ng-class = "{'detail-neighbor-menu-item-select' : amenity.check}" class="detail-neighbor-menu-item-serial">{{amenity.index}}</span>
+                    <span ng-class = "{'detail-amenity' : amenity.check}">{{amenity.name}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 nopadding detail-neighbor-map">
+
+          <div ng-class = "{'hide' : listFocus}" id="map-wrapper">
+              <div id="map-amenity" width="100%"  class="detail-neighbor-map"></div>
+              <div id="button-wrapper">
+                  <input ng-class = "{'view-focus' : listFocus}" type="submit" id="listBtn-1" value="&#xf0ca;" class="btnStyle" ng-click="toggleListFocus()"/>
+                  <input ng-class = "{'view-focus' : mapFocus}" type="submit" id="mapBtn-1" value="&#xf279;" class="btnStyle" ng-click="toggleMapFocus()"/>
+              </div>
+          </div>
+          <div ng-class = "{'hide' : mapFocus}" id="details-wrapper">
+              <div id="button-wrapper">
+                  <input ng-class = "{'view-focus' : listFocus}" type="submit" id="listBtn-2" value="&#xf0ca;" class="btnStyle" ng-click="toggleListFocus()"/>
+                  <input ng-class = "{'view-focus' : mapFocus}" type="submit" id="mapBtn-2" value="&#xf279;" class="btnStyle" ng-click="toggleMapFocus()"/>
+              </div>
+              <div>
+                <ul class="amenityList-ul neighborhoodAmenity">
+                  <li ng-repeat="amenity in amenityList">
+                    <div class="row amenityList-row">
+                      <div class="col-sm-4 amenityList-imgRow">
+                        <img src="{{amenity.imageUrl}}" class="amenityList-img">
+                      </div>
+                      <div class="col-sm-6">
+                        <h3 class="amenityList-title"><a href="{{amenity.url}}" target="_blank">{{amenity.name}}</a></h3>
+                        <h4 class="amenityList-text">{{amenity.location.address1}}</h4>
+                        <h4 class="amenityList-text">{{amenity.location.city}}, {{amenity.location.state}} {{amenity.location.zipCode}}</h4>
+                        <br>
+                        <h4 class="amenityList-text">Distance from Property: {{amenity.distanceTo}} mi</h4>
+
+                        <table>
+                          <tr>
+                            <td>
+                              <div class="star-ratings-sprite">
+                                <span style="width:{{amenity.starPercent}}" class="star-ratings-sprite-rating"></span>
+                              </div>
+                            </td>
+                            <td>
+                              <h5> of {{amenity.reviewCount}} reviews</h5>
+                            </td>
+                          </tr>
+                        </table>
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END Neighborhood Amenities -->
+
+    <hr width="80%" />
+
+    <div class="detail-section col-md-10" id="contact">
+      <div class="detail-section-title">Contact agent<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <br>
+      <div class="detail-contact-section row">
+        <div class="detail-contact-left col-md-8">
+          <div class="detail-contact-left-greeting">Hi Maria</div>
+          <form>
+            <div>
+              <textarea class="detail-contact-left-textarea col-md-8" placeholder="enter your message here"></textarea>
+              <div class="detail-contact-left-action col-md-3">
+                <div class="">I am interested in ...</div>
+                <input type="radio" name="action" value="showing"> showing<br>
+                <input type="radio" name="action" value="info"> more information
+              </div>
+            </div>
+            <div class="detail-contact-left-method">
+              <div>Best way for Maria to respond?</div>
+              <div>You might have to complete your contact information</div>
+              <div>
+                <input type="radio" name="method" value="call"> call me
+                <input type="radio" name="method" value="text"> text me
+                <input type="radio" name="method" value="email"> email me
+              </div>
+            </div>
+            <button type="submit" name="submit" value="send message" class="detail-contact-left-submit">
+              <i class="fa fa-paper-plane"></i>
+              send message
+            </button>
+          </form>
+        </div>
+        <div class="detail-contact-right col-md-4">
+          <div additional-Color class="detail-contact-right-agent">
+            <div additional-Color class="detail-contact-right-agent">
+              <div class="detail-contact-right-avatar col-md-1"></div>
+              <div class="detail-contact-right-name col-md-1">Maria Jimenez
+                <div class="detail-contact-right-agenttitle">Listing agent</div>
+                <div class="detail-contact-right-agenttitle">Miami</div>
+              </div>
+            </div>
+            <div class="detail-contact-right-phone">
+              <span class="detail-contact-right-phone-icon fa fa-phone"></span> (786)332-7042
+            </div>
+            <div class="detail-contact-right-message" ng-click>
+              <span class="detail-contact-right-message-icon glyphicon glyphicon-envelope"></span> maria@geocitiex.com
+            </div>
+            <div class="detail-contact-right-rate" ng-click>
+              <i class="detail-contact-right-rate-star fa fa-star"></i>
+              <i class="detail-contact-right-rate-star fa fa-star"></i>
+              <i class="detail-contact-right-rate-star fa fa-star"></i>
+              <i class="detail-contact-right-rate-star fa fa-star"></i>
+              <i class="detail-contact-right-rate-star-o fa fa-star"></i> 17 ratings
+            </div>
+          </div>
+          <div class="detail-contact-right-other" ng-click>
+            <span class="detail-contact-right-other-avatar"></span>
+            <div class="detail-contact-right-other-info">
+              <div class="detail-contact-right-other-name">Maria Jimenez</div>
+              <div class="detail-contact-right-other-agenttitle">Featured agent</div>
+            </div>
+          </div>
+          <div class="detail-contact-right-other" ng-click>
+            <span class="detail-contact-right-other-avatar"></span>
+            <div class="detail-contact-right-other-info">
+              <div class="detail-contact-right-other-name">Maria Jimenez</div>
+              <div class="detail-contact-right-other-agenttitle">Featured agent</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <img width="100%" src="../images/detail/contact-placeholder.png" style="margin-top: 20px;"> -->
+    </div>
+    <hr width="80%" />
+    <div class="detail-section col-md-10" id="similar">
+      <div class="detail-section-title">Similar homes<span class="detail-section-title-icon fa fa-caret-square-o-up" ng-click></span></div>
+      <div class="results-list" style="overflow-x: scroll; overflow-y: hidden;">
+        <div class="row">
+          <div class="detail-similar-wrapper">
+
+            <!-- Property cards -->
+            <div ng-repeat="property in properties" class="col-sm-6 col-md-4 animated fadeInUp">
+
+
+              <div class="thumbnail card-wrapper">
+                <a ng-href="#/results/{{property.id}}" class="card-link"></a>
+                <!-- Save property -->
+                <i class="card-save glyphicon" ng-class="{'card-save-saved glyphicon-star': property.saved, 'glyphicon-star-empty': !property.saved}" ng-click="addPropertyToList($event, property, property.id)"></i>
+
+                <!-- Tag property -->
+                <span class="card-tag-add" ng-click="openTagModal($event)">#</span>
+
+                <!-- Add Tag Input -->
+                <form class="card-tag-input-wrapper animated" ng-submit="addNewTag($event, property)">
+                  <input type="text" placeholder="enter a tag" class="card-tag-input" ng-model="settings.tag.newTag" />
+                  <i class="glyphicon glyphicon-remove" ng-click="settings.tag.addedTag = false"></i>
+                  <i class="glyphicon glyphicon-ok" ng-click="addNewTag(property)"></i>
+                </form>
+
+                <!-- Image -->
+                <div class="card-image">
+                  <div class="card-filter"></div>
+                  <img ng-src="images/temp_home_placeholder/home{{($index%14)+1}}.jpeg" class="animated fadeInUp" ng-style="{'animation-delay': {{0.07*($index+2)}}+'s'}" style="width: 100%;" alt="...">
+
+                  <!-- Tags -->
+                  <div class="card-tag-wrapper">
+                    <span class="card-tag" ng-repeat="tag in tags track by $index">#{{tag}}</span>
+                  </div>
+                </div>
+
+                <!-- Caption -->
+                <div class="caption">
+                  <div class="card-top">
+                    <span class="card-price">${{property.currentPrice|| '-'}}</span>
+                    <span class="card-bedrooms">{{property.bedsTotal || '-'}} Bd</span>
+                  </div>
+                  <div class="card-bottom">
+                    <div class="card-address">{{property.city || 'Undisclosed Address'}}</div>
+                    <div class="card-details">
+                      <span>Condo</span> &middot;
+                      <span>{{property.sqFtTotal || '-'}} sqft</span> &middot;
+                      <span>3.5 mon</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <chatbox
+    ng-if="lobbyChannel"
+    user="user"
+    channel="lobbyChannel"
+    messages="lobbyMessages">
+  </chatbox>
+
+</div>
+</div>

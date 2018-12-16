@@ -1,0 +1,93 @@
+.admin-dash {
+  color: lighten(#333333, 20);
+  // background-color: #F8F8F8;
+  // height: 100vh;
+  .header {
+    h2 { margin-bottom: 0px; }
+    h5 { margin: 0; }
+  }
+  .quick-links {
+    margin-top: 40px;
+    .admin-card-container {
+      padding: 0 20px;
+      a.admin-card-container {
+        display: block;
+        height: 80px;
+        color: lighten(#333333, 20);
+        text-decoration: none;
+        position: relative;
+        margin-bottom: 25px;
+        -webkit-transition-property: z-index;
+        -webkit-transition-duration: 1s, 0s;
+        -webkit-timing-function: ease-in-out;
+        -webkit-transition-delay: 0s, 1s;
+        
+        -moz-transition-property: z-index;
+        -moz-transition-duration: 1s, 0s;
+        -moz-timing-function: ease-in-out;
+        -moz-transition-delay: 0s, 1s;
+        z-index: 1;
+        &:hover {
+          z-index: 100;
+          -webkit-transition-delay: 0s, 0s;
+          -moz-transition-delay: 0s, 0s;
+        }
+        .admin-card {
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-sizing: border-box;
+          width: 100%;
+          max-height: 80px;
+          padding: 5px;
+          background-color: #fff;
+          box-shadow: -15px 15px 50px -18px lighten(#000, 60);
+          transition: all .3s ease-in-out;
+          overflow: hidden;
+          &:hover {
+            transform: scale(1.05);
+            max-height: 800px;
+          }
+          .info {
+            height: 70px;
+            padding-top: 14px;
+            padding-left: 14px;
+            h5, h3 { margin: 0; }
+          }
+          .description {
+            margin-top: 5px;
+            display: block;
+            height: auto;
+            margin: 20px 0;
+            padding: 0 20px;
+          }
+          .tile {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            height: 70px;
+            width: 70px;
+            text-align: center;
+            span {
+              color: #fff;
+              font-size: 40px;
+              line-height: 70px;
+            }
+          }
+          .external {
+            display: block;;
+            height: 15px;
+            width: 15px;
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 10px;
+            text-align: center;
+            color: lighten(#333333, 40);
+            span { line-height: 15px; }
+          }
+        }
+      }
+    }
+  }
+}

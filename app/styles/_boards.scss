@@ -1,0 +1,47 @@
+/* START #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
+.boards{
+
+	&-header {
+    text-align: center;
+    padding: 32px;
+}
+
+	&-row {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0 4px;
+	}
+
+
+
+	/* Create four equal columns that sits next to each other */
+	&-column {
+		flex: 50%;
+		padding: 0 4px;
+		
+		& img {
+			margin-top: 8px;
+			vertical-align: middle;
+			background-image: url(../images/temp_home_placeholder/home2.jpeg);
+		}
+	}
+
+	
+
+	/* Responsive layout - makes a two column-layout instead of four columns */
+	@media screen and (max-width: 800px) {
+		&-column {
+			flex: 50%;
+			max-width: 50%;
+		}
+	}
+
+	/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+	@media screen and (max-width: 600px) {
+		&-column {
+		 	flex: 100%;
+		 	max-width: 100%;
+		}
+	}
+}
+/* END #2357 and #2487 Andreina Rojas aroja108@fiu.edu */
