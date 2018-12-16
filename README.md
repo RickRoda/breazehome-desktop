@@ -1,7 +1,7 @@
 # BreazeHome Capstone Project (RickRoda)
 SECRET_KEY has been removed. This project WILL NOT COMPILE.
 This is purely on GitHub to showcase my programming skills to potential employers.
-Send me a message if you would like to discuss anything further.
+Send me a message if you would like to discuss my contributions to this project.
 
 
 # Breazehome-desktop
